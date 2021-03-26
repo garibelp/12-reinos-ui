@@ -1,6 +1,7 @@
 ## Description
 
 <b>Base Repository containing:</b>
+
 <ul>
     <li>Initial config of a react+redux project</li>
     <li>lint configuration</li>
@@ -23,8 +24,6 @@
         </ul>
     </li>
 </ul>
-
-
 
 ## Installation
 

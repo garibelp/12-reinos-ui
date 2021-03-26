@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+
 import QueryStatusEnum from '../enums/queryStatusEnum';
 
 const { actions, reducer } = createSlice({

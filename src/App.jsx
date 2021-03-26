@@ -1,8 +1,8 @@
-import React from 'react';
 import { Layout, Menu } from 'antd';
-import { SignUpComponent } from './components/auth/SignUpComponent';
+import React from 'react';
 
 import './App.css';
+import { SignUpComponent } from './components/auth/SignUpComponent';
 
 const { Header, Content } = Layout;
 const { Item } = Menu;

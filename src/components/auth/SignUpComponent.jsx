@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
+
 import { signUpAction } from '../../reducers/userThunk';
 
 export function SignUpComponent() {

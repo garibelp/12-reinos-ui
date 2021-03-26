@@ -6,5 +6,8 @@
     "jsxBracketSameLine": false,
     "arrowParens": "always",
     "endOfLine": "lf",
-    "printWidth": 80
+    "printWidth": 80,
+    "importOrder": ["^@core/(.*)$", "^@server/(.*)$", "^@ui/(.*)$", "^[./]"],
+    "importOrderSeparation": true,
+    "experimentalBabelParserPluginsList": ["jsx", "typescript"]
 }
