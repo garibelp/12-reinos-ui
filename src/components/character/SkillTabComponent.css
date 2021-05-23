@@ -1,0 +1,15 @@
+.skill-mana {
+    text-align: center;
+}
+
+.skill-mana-bar {
+    width: 90%;
+    margin-left: 5px;
+}
+.skill-mana-bar > .ant-progress-text {
+    font-weight: bold;
+}
+
+.skill-mana-symbol {
+    margin: 5px;
+}

@@ -1,0 +1,17 @@
+.status-icon {
+    width: 50px;
+    fill: #58181c;
+    margin: 10px 0 10px 0;
+}
+
+.status-title {
+}
+
+.status-text {
+    position: absolute;
+    top: 56%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-weight: bold;
+    font-size: large;
+}

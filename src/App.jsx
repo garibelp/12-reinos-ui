@@ -1,8 +1,8 @@
 import { Layout, Menu } from 'antd';
 import React from 'react';
 
-import './App.css';
-import { SignUpComponent } from './components/auth/SignUpComponent';
+import './App.less';
+import CharacterComponent from './components/character/CharacterComponent';
 
 const { Header, Content } = Layout;
 const { Item } = Menu;
@@ -24,7 +24,7 @@ const App = () => (
                 minHeight: 280,
             }}
         >
-            <SignUpComponent />
+            <CharacterComponent />
         </Content>
     </Layout>
 );

@@ -1,0 +1,77 @@
+.character-card {
+    width: 1000px;
+    height: 800px;
+    background-color: #a12e39;
+}
+
+.character-card > .ant-card-head {
+    background-color: #58181c;
+    text-align: center;
+}
+
+.character-card > .ant-card-body {
+    height: 720px;
+}
+
+.character-card-attributes {
+    /* justify-content: center; */
+}
+
+.attr-defense,
+.attr-base,
+.attr-offense,
+.character-card-footer {
+    text-align: center;
+}
+
+.character-card-footer-submit {
+    margin-right: 5px;
+}
+
+.ant-descriptions-item-label.attr-offense,
+.ant-descriptions-item-label.attr-defense,
+.ant-descriptions-item-label.attr-base {
+    background-color: #58181c;
+    font-weight: bold;
+}
+
+.ant-descriptions-item-content.attr-offense {
+    background-color: firebrick;
+}
+.ant-descriptions-item-content.attr-defense {
+    background-color: peru;
+}
+.ant-descriptions-item-content.attr-base {
+    background-color: gray;
+}
+
+.charsheet-shield {
+    width: 12px;
+    fill: white;
+}
+.charsheet-race-info-card {
+    width: 230px;
+}
+
+.charsheet-bond-info-card{
+    margin-bottom: 5px;
+}
+
+.charsheet-internal-card {
+    color: #d89614;
+    background: #58181c;
+    height: 25px;
+}
+
+.charsheet-bond-info-card > .ant-card-body,
+.charsheet-race-info-card > .ant-card-body {
+    padding: 0;
+}
+
+.charsheet-race-info-col {
+    text-align: center;
+}
+
+.charsheet-attr-title {
+    margin: 10px;
+}
