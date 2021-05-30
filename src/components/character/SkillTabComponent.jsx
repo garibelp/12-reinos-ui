@@ -1,15 +1,41 @@
 import { ThunderboltFilled } from '@ant-design/icons';
-import { Divider, Progress } from 'antd';
+import { Collapse, Divider, Progress } from 'antd';
 import PropTypes from 'prop-types';
 import React from 'react';
 
 import JobInfoEnum from '../../enums/jobInfoEnum';
-import { extractJobInfo } from '../../utils/attributeUtils';
+import SubclassInfoEnum from '../../enums/subclassInfoEnum';
+import {
+    extractJobInfo,
+    extractSubclassInfo,
+} from '../../utils/attributeUtils';
 import './SkillTabComponent.css';
+
+const { Panel } = Collapse;
 
 const SkillTabComponent = (props) => {
     const { currentMana, totalMana, job, level, subclass } = props;
-    const jobSkills = extractJobInfo(job, JobInfoEnum.SKILLS);
+    const jobSkills = extractJobInfo(job, JobInfoEnum.SKILLS) || [];
+    const subclassSkills =
+        extractSubclassInfo(subclass, SubclassInfoEnum.SKILLS) || [];
+
+    const skillList = jobSkills
+        .concat(subclassSkills)
+        .filter((s) => s.level <= level)
+        .map((s, i) => {
+            const header = (
+                <p className="skill-list-header">
+                    <ThunderboltFilled className="skill-mana-symbol" />
+                    {s.cost} - {s.name}
+                </p>
+            );
+            return (
+                <Panel header={header} key={i}>
+                    <p>{s.description}</p>
+                </Panel>
+            );
+        });
+
     return (
         <div className="skill-mana">
             <ThunderboltFilled className="skill-mana-symbol" />
@@ -21,7 +47,10 @@ const SkillTabComponent = (props) => {
                 format={() => `${currentMana}/${totalMana}`}
             />
             <Divider style={{ margin: '24px' }} />
-            TODO: Magias (classe e subclasse)
+            <p>Magias</p>
+            <div className="skill-list">
+                <Collapse accordion>{skillList}</Collapse>
+            </div>
         </div>
     );
 };

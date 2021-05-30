@@ -72,7 +72,6 @@ const jobList = Jobs.map((j) => (
 
 const subclassList = (job) => {
     const filteredSubclasses = Subclasses.filter((s) => s.job === job);
-    console.log(job, filteredSubclasses);
     return filteredSubclasses.map((s) => (
         <Option key={`subclass-option-${s.name}`} value={s.name}>
             {s.name}

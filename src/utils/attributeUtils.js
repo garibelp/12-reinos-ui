@@ -1,6 +1,6 @@
 import Backgrounds from '../mock/background';
-import jobs from '../mock/jobs';
-import races from '../mock/races';
+import Jobs from '../mock/jobs';
+import Races from '../mock/races';
 import Subclasses from '../mock/subclasses';
 
 /**
@@ -36,10 +36,10 @@ export function calculateAttribute(
         attrValue += extractBonusAttr(background, Backgrounds);
     }
     if (race) {
-        attrValue += extractBonusAttr(race, races);
+        attrValue += extractBonusAttr(race, Races);
     }
     if (job) {
-        attrValue += extractBonusAttr(job, jobs);
+        attrValue += extractBonusAttr(job, Jobs);
     }
     if (subclass) {
         attrValue += extractBonusAttr(subclass, Subclasses);
@@ -56,7 +56,7 @@ export function calculateAttribute(
 export function extractMaxLifeAndMana(jobName, currentLevel) {
     const data = { life: 1, mana: 0 };
     if (jobName) {
-        const currentJob = jobs.find((j) => j.name === jobName);
+        const currentJob = Jobs.find((j) => j.name === jobName);
         data.life = currentJob.life * currentLevel;
         data.mana = currentJob.mana * currentLevel;
     }
@@ -64,28 +64,28 @@ export function extractMaxLifeAndMana(jobName, currentLevel) {
 }
 
 /**
- * @description Function that retrieves the dice value of a class
+ * @description Function that retrieves the field value of a class
  * @param {string} jobName - Name of job being used
  * @param {JobInfoEnum} value - Name of attribute being retrieved being used
  * @returns {string} Attribute info
  */
 export function extractJobInfo(jobName, value) {
     if (jobName && value) {
-        const currentJob = jobs.find((j) => j.name === jobName);
+        const currentJob = Jobs.find((j) => j.name === jobName);
         return currentJob[value];
     }
     return null;
 }
 
 /**
- * @description Function that retrieves the dice value of a class
+ * @description Function that retrieves the field value of a race
  * @param {string} raceName - Name of race being used
  * @param {RaceInfoEnum} value - Name of attribute being retrieved being used
  * @returns {string} Attribute info
  */
 export function extractRaceInfo(raceName, value) {
     if (raceName && value) {
-        const currentRace = races.find((r) => r.name === raceName);
+        const currentRace = Races.find((r) => r.name === raceName);
         return currentRace[value];
     }
     return null;
@@ -100,6 +100,20 @@ export function extractBackgroundBond(backgroundName) {
     if (backgroundName) {
         const currentBg = Backgrounds.find((b) => b.name === backgroundName);
         return currentBg.bond;
+    }
+    return null;
+}
+
+/**
+ * @description Function that retrieves the field value of a subclass
+ * @param {string} subclassName - Name of subclass being used
+ * @param {JobInfoEnum} value - Name of attribute being retrieved being used
+ * @returns {string} Attribute info
+ */
+export function extractSubclassInfo(subclassName, value) {
+    if (subclassName && value) {
+        const currentSubclass = Subclasses.find((j) => j.name === subclassName);
+        return currentSubclass[value];
     }
     return null;
 }

@@ -13,3 +13,14 @@
 .skill-mana-symbol {
     margin: 5px;
 }
+
+.skill-list {
+    width: 950px;
+    height: 509px;
+    overflow: auto;
+}
+
+.skill-list-header {
+    text-align: justify;
+    margin: 0;
+}
