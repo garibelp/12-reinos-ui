@@ -24,13 +24,17 @@ const SkillTabComponent = (props) => {
         .filter((s) => s.level <= level)
         .map((s, i) => {
             const header = (
-                <p className="skill-list-header">
+                <p className="skill-list-header-content">
                     <ThunderboltFilled className="skill-mana-symbol" />
-                    {s.cost} - {s.name}
+                    {s.cost} | {s.name}
                 </p>
             );
             return (
-                <Panel header={header} key={i}>
+                <Panel
+                    className="skill-list-header-panel"
+                    header={header}
+                    key={i}
+                >
                     <p>{s.description}</p>
                 </Panel>
             );
@@ -49,7 +53,9 @@ const SkillTabComponent = (props) => {
             <Divider style={{ margin: '24px' }} />
             <p>Magias</p>
             <div className="skill-list">
-                <Collapse accordion>{skillList}</Collapse>
+                {skillList.length > 0 && (
+                    <Collapse accordion>{skillList}</Collapse>
+                )}
             </div>
         </div>
     );

@@ -555,14 +555,14 @@ const CharacterComponent = () => {
                 </Tabs>
             </Form>
             <Divider />
-            <Row style={{ justifyContent: 'center' }}>
+            {/* <Row style={{ justifyContent: 'center' }}>
                 <Space>
                     <Button type="primary">TODO - Save</Button>
                     <Button type="primary" danger>
                         TODO - Reset
                     </Button>
                 </Space>
-            </Row>
+            </Row> */}
         </Card>
     );
 };

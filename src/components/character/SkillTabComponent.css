@@ -16,11 +16,15 @@
 
 .skill-list {
     width: 950px;
-    height: 509px;
+    height: 473px;
     overflow: auto;
 }
 
-.skill-list-header {
+.skill-list-header-content {
     text-align: justify;
     margin: 0;
+}
+
+.skill-list-header-panel {
+    background: #58181c;
 }
