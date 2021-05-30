@@ -4,5 +4,6 @@ export default Object.freeze({
     MANA: 'mana',
     ARMOR: 'armorType',
     HIT_DICE: 'damage',
+    BONUS_ATTR: 'bonusAttr',
     SKILLS: 'skills',
 });

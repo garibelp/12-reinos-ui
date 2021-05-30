@@ -70,8 +70,15 @@ const jobList = Jobs.map((j) => (
     </Option>
 ));
 
-// TODO: Subclass list logic
-const subclassList = (job) => {};
+const subclassList = (job) => {
+    const filteredSubclasses = Subclasses.filter((s) => s.job === job);
+    console.log(job, filteredSubclasses);
+    return filteredSubclasses.map((s) => (
+        <Option key={`subclass-option-${s.name}`} value={s.name}>
+            {s.name}
+        </Option>
+    ));
+};
 
 const CharacterComponent = () => {
     const [form] = Form.useForm();
@@ -111,6 +118,7 @@ const CharacterComponent = () => {
         }
         if (levelToUse < 2) {
             setSubclass('');
+            form.setFieldsValue({ subclass: null });
         }
         setTotalLife(life);
         setTotalMana(mana);

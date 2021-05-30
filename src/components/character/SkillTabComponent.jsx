@@ -21,7 +21,7 @@ const SkillTabComponent = (props) => {
                 format={() => `${currentMana}/${totalMana}`}
             />
             <Divider style={{ margin: '24px' }} />
-            Magias
+            TODO: Magias (classe e subclasse)
         </div>
     );
 };

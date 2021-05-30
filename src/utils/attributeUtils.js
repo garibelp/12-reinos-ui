@@ -1,6 +1,7 @@
 import Backgrounds from '../mock/background';
 import jobs from '../mock/jobs';
 import races from '../mock/races';
+import Subclasses from '../mock/subclasses';
 
 /**
  * @description Function that calculates the attribute value of a char based on info sent
@@ -41,7 +42,7 @@ export function calculateAttribute(
         attrValue += extractBonusAttr(job, jobs);
     }
     if (subclass) {
-        console.log('subclass', subclass);
+        attrValue += extractBonusAttr(subclass, Subclasses);
     }
     return attrValue;
 }
