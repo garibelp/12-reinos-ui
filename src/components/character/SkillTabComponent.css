@@ -6,6 +6,7 @@
     width: 90%;
     margin-left: 5px;
 }
+
 .skill-mana-bar > .ant-progress-text {
     font-weight: bold;
 }
@@ -23,8 +24,25 @@
 .skill-list-header-content {
     text-align: justify;
     margin: 0;
+    display: flex;
+    align-items: center;
 }
 
 .skill-list-header-panel {
     background: #58181c;
+    margin-bottom: 2px;
+}
+
+.skill-list-header-panel > .ant-collapse-header {
+    padding: 0 !important;
+}
+
+.skill-list-header-content-start {
+    margin-right: auto;
+}
+
+.skill-list-header-content-button {
+    height: 30px;
+    width: 50px;
+    font-weight: bold;
 }

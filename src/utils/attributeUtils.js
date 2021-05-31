@@ -66,7 +66,7 @@ export function extractMaxLifeAndMana(jobName, currentLevel) {
 /**
  * @description Function that retrieves the field value of a class
  * @param {string} jobName - Name of job being used
- * @param {JobInfoEnum} value - Name of attribute being retrieved being used
+ * @param {string} value - Name of attribute being retrieved being used
  * @returns {string} Attribute info
  */
 export function extractJobInfo(jobName, value) {
@@ -80,7 +80,7 @@ export function extractJobInfo(jobName, value) {
 /**
  * @description Function that retrieves the field value of a race
  * @param {string} raceName - Name of race being used
- * @param {RaceInfoEnum} value - Name of attribute being retrieved being used
+ * @param {string} value - Name of attribute being retrieved being used
  * @returns {string} Attribute info
  */
 export function extractRaceInfo(raceName, value) {
@@ -107,7 +107,7 @@ export function extractBackgroundBond(backgroundName) {
 /**
  * @description Function that retrieves the field value of a subclass
  * @param {string} subclassName - Name of subclass being used
- * @param {JobInfoEnum} value - Name of attribute being retrieved being used
+ * @param {string} value - Name of attribute being retrieved being used
  * @returns {string} Attribute info
  */
 export function extractSubclassInfo(subclassName, value) {
