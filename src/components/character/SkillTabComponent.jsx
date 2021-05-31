@@ -28,7 +28,6 @@ const SkillTabComponent = () => {
         extractSubclassInfo(subclass, SubclassInfoEnum.SKILLS) || [];
 
     const checkForPanelExpand = (index) => {
-        console.log(index, skillOpened);
         setSkillOpened(index === skillOpened ? null : index);
     };
 
