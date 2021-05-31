@@ -103,11 +103,11 @@ const CharacterComponent = () => {
     // newLevel - Used to trigger change on component when job is already selected and level change
     const setJobValues = (value, newLevel = 0) => {
         const levelToUse = newLevel || level;
-        setJob(value);
 
-        const classArmor = extractJobInfo(value, JobInfoEnum.ARMOR);
-        setCurrentArmor(classArmor);
-        setTotalArmor(classArmor);
+        if (levelToUse < 2 || value !== job) {
+            setSubclass('');
+            form.setFieldsValue({ subclass: null });
+        }
 
         const { life, mana } = extractMaxLifeAndMana(value, levelToUse);
 
@@ -115,10 +115,12 @@ const CharacterComponent = () => {
             setCurrentLife(life);
             setCurrentMana(mana);
         }
-        if (levelToUse < 2) {
-            setSubclass('');
-            form.setFieldsValue({ subclass: null });
-        }
+
+        const classArmor = extractJobInfo(value, JobInfoEnum.ARMOR);
+
+        setCurrentArmor(classArmor);
+        setTotalArmor(classArmor);
+        setJob(value);
         setTotalLife(life);
         setTotalMana(mana);
     };
@@ -553,16 +555,15 @@ const CharacterComponent = () => {
                         TODO: Items
                     </TabPane>
                 </Tabs>
+                <Divider />
+                <Row style={{ justifyContent: 'center' }}>
+                    <Space>
+                        <Button type="primary" htmlType="submit">
+                            TODO - Save
+                        </Button>
+                    </Space>
+                </Row>
             </Form>
-            <Divider />
-            {/* <Row style={{ justifyContent: 'center' }}>
-                <Space>
-                    <Button type="primary">TODO - Save</Button>
-                    <Button type="primary" danger>
-                        TODO - Reset
-                    </Button>
-                </Space>
-            </Row> */}
         </Card>
     );
 };
