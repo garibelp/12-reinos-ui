@@ -35,6 +35,38 @@ const Subclasses = Object.freeze([
             },
         ],
     },
+    {
+        [SubclassInfoEnum.NAME]: 'Artilheiro',
+        [SubclassInfoEnum.JOB]: 'Atirador',
+        [SubclassInfoEnum.BONUS_ATTR]: {
+            [attributeEnum.CON.base]: 2,
+        },
+        [SubclassInfoEnum.SKILLS]: [
+            {
+                [SkillInfoEnum.NAME]: 'Escopeta',
+                [SkillInfoEnum.LEVEL]: 2,
+                [SkillInfoEnum.COST]: 1,
+                [SkillInfoEnum.DESC]:
+                    'O Artilheiro pode gastar 1 Ponto de Mana para realizar um tiro potente de Escopeta. Esse tiro causa 1d8 adicional no alvo, mas o Artilheiro recebe metade desse dano extra. O alvo e o artilheiro também são movidos 1m para trás.',
+            },
+        ],
+    },
+    {
+        [SubclassInfoEnum.NAME]: 'Pistoleiro',
+        [SubclassInfoEnum.JOB]: 'Atirador',
+        [SubclassInfoEnum.BONUS_ATTR]: {
+            [attributeEnum.CAR.base]: 2,
+        },
+        [SubclassInfoEnum.SKILLS]: [
+            {
+                [SkillInfoEnum.NAME]: 'Na Mosca',
+                [SkillInfoEnum.LEVEL]: 2,
+                [SkillInfoEnum.COST]: 1,
+                [SkillInfoEnum.DESC]:
+                    'Desde que não se movimente nesse turno, o Pistoleiro pode gastar 1 Ponto de Mana e aumentar suas chances de Acerto Crítico para 8-12',
+            },
+        ],
+    },
 ]);
 
 export default Subclasses;

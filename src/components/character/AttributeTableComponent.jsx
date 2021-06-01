@@ -10,7 +10,7 @@ const { Group: RadioGroup } = Radio;
 
 const AttributeTableComponent = (props) => {
     const [bonusAttribute, setBonusAttribute] = useState('');
-    const { background, race, job, subclass, defective } = props;
+    const { background, race, job, subclass, defective, level } = props;
 
     const useEnhanced = race === 'Alterado';
 
@@ -29,6 +29,7 @@ const AttributeTableComponent = (props) => {
                         race,
                         job,
                         subclass,
+                        level,
                         bonusAttribute === attr[0] ? bonusEnhance : 0
                     );
                     return (
@@ -79,6 +80,7 @@ AttributeTableComponent.propTypes = {
     job: PropTypes.string,
     subclass: PropTypes.string,
     defective: PropTypes.bool,
+    level: PropTypes.number,
 };
 
 AttributeTableComponent.defaultProps = {
@@ -87,6 +89,7 @@ AttributeTableComponent.defaultProps = {
     job: '',
     subclass: '',
     defective: false,
+    level: 1,
 };
 
 export default AttributeTableComponent;

@@ -57,6 +57,7 @@ const CharacterComponent = () => {
                     </TabPane>
                     <TabPane
                         key="3"
+                        disabled
                         tab={
                             <span>
                                 <ExperimentFilled />

@@ -19,6 +19,7 @@ export function calculateAttribute(
     race,
     job,
     subclass,
+    level,
     enhancedBonus = 0
 ) {
     let attrValue = 3 + enhancedBonus;
@@ -39,7 +40,8 @@ export function calculateAttribute(
         attrValue += extractBonusAttr(race, Races);
     }
     if (job) {
-        attrValue += extractBonusAttr(job, Jobs);
+        const levelMultiplier = Math.ceil(level / 2);
+        attrValue += extractBonusAttr(job, Jobs) * levelMultiplier;
     }
     if (subclass) {
         attrValue += extractBonusAttr(subclass, Subclasses);
@@ -57,8 +59,8 @@ export function extractMaxLifeAndMana(jobName, currentLevel) {
     const data = { life: 1, mana: 0 };
     if (jobName) {
         const currentJob = Jobs.find((j) => j.name === jobName);
-        data.life = currentJob.life * currentLevel;
-        data.mana = currentJob.mana * currentLevel;
+        data.life = Math.floor(currentJob.life * currentLevel * 1.5);
+        data.mana = currentJob.mana + currentLevel * 2;
     }
     return data;
 }

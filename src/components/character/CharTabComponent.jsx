@@ -109,17 +109,17 @@ const CharTabComponent = () => {
         const { life, mana } = extractMaxLifeAndMana(value, levelToUse);
 
         if (newLevel < level) {
-            charObject.currentLife = Math.floor(life * levelToUse * 1.5);
-            charObject.currentMana = mana + levelToUse * 2;
+            charObject.currentLife = life;
+            charObject.currentMana = mana;
         }
 
         const classArmor = extractJobInfo(value, JobInfoEnum.ARMOR);
-
+        console.log(levelToUse, life);
         charObject.currentArmor = classArmor;
         charObject.totalArmor = classArmor;
         charObject.job = value;
-        charObject.totalLife = Math.floor(life * levelToUse * 1.5);
-        charObject.totalMana = mana + levelToUse * 2;
+        charObject.totalLife = life;
+        charObject.totalMana = mana;
         dispatch(charActions.setCharacterInfoBlock(charObject));
     };
 
@@ -239,6 +239,7 @@ const CharTabComponent = () => {
                         job={job}
                         subclass={subclass}
                         defective={defective}
+                        level={level}
                     />
                 </Col>
                 <Col span={12}>
