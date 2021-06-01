@@ -32,6 +32,25 @@ const Backgrounds = [
         },
         bond: BondEnum.PRO,
     },
+    {
+        name: 'Cobaia',
+        bonusAttr: {
+            [AttributeEnum.FOR.base]: 2,
+            [AttributeEnum.DES.base]: 2,
+            [AttributeEnum.CON.base]: 2,
+        },
+        bond: BondEnum.FAM,
+    },
+
+    {
+        name: 'Comerciante',
+        bonusAttr: {
+            [AttributeEnum.FOR.base]: 2,
+            [AttributeEnum.CON.base]: 2,
+            [AttributeEnum.CAR.base]: 2,
+        },
+        bond: BondEnum.GRP,
+    },
 ];
 
 export default Backgrounds;
