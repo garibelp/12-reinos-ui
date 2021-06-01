@@ -46,3 +46,11 @@
     width: 50px;
     font-weight: bold;
 }
+
+.skill-list-header-content-end {
+    margin-left: auto;
+    height: 50%;
+    margin-right: 10px;
+    text-align: end;
+    width: 40px;
+}

@@ -96,6 +96,7 @@ const CharTabComponent = () => {
     // newLevel - Used to trigger change on component when job is already selected and level change
     const setJobValues = (value, newLevel = 0) => {
         const charObject = {};
+
         if (newLevel) {
             charObject.level = newLevel;
         }
@@ -108,8 +109,8 @@ const CharTabComponent = () => {
         const { life, mana } = extractMaxLifeAndMana(value, levelToUse);
 
         if (newLevel < level) {
-            charObject.currentLife = life;
-            charObject.currentMana = mana;
+            charObject.currentLife = Math.floor(life * levelToUse * 1.5);
+            charObject.currentMana = mana + levelToUse * 2;
         }
 
         const classArmor = extractJobInfo(value, JobInfoEnum.ARMOR);
@@ -117,8 +118,8 @@ const CharTabComponent = () => {
         charObject.currentArmor = classArmor;
         charObject.totalArmor = classArmor;
         charObject.job = value;
-        charObject.totalLife = life;
-        charObject.totalMana = mana;
+        charObject.totalLife = Math.floor(life * levelToUse * 1.5);
+        charObject.totalMana = mana + levelToUse * 2;
         dispatch(charActions.setCharacterInfoBlock(charObject));
     };
 

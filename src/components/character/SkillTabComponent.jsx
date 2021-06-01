@@ -1,9 +1,10 @@
 import {
-    CaretDownOutlined,
-    CaretLeftOutlined,
+    DownCircleFilled,
+    LeftCircleFilled,
     ThunderboltFilled,
 } from '@ant-design/icons';
 import { Button, Collapse, Divider, Progress, Space } from 'antd';
+import Text from 'antd/es/typography/Text';
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -40,40 +41,41 @@ const SkillTabComponent = () => {
             const header = (
                 <div className="skill-list-header-content">
                     <div className="skill-list-header-content-start">
-                        <Space size="middle">
-                            <Button
-                                className="skill-list-header-content-button"
-                                type="primary"
-                                danger
-                                disabled={s.cost > currentMana}
-                                onClick={() => {
-                                    if (s.cost <= currentMana) {
-                                        dispatch(
-                                            setCurrentMana(currentMana - s.cost)
-                                        );
-                                    }
-                                }}
-                            >
-                                <ThunderboltFilled className="skill-mana-symbol" />
-                                {s.cost}
-                            </Button>
-                            {s.name}
-                        </Space>
+                        <Button
+                            className="skill-list-header-content-button"
+                            type="primary"
+                            danger
+                            disabled={s.cost > currentMana}
+                            onClick={() => {
+                                if (s.cost <= currentMana) {
+                                    dispatch(
+                                        setCurrentMana(currentMana - s.cost)
+                                    );
+                                }
+                            }}
+                        >
+                            <ThunderboltFilled className="skill-mana-symbol" />
+                            {s.cost}
+                        </Button>
                     </div>
-                    <Button
+                    <div
+                        style={{ width: '845px', textAlign: 'center' }}
+                        onClick={() => checkForPanelExpand(i.toString())}
+                    >
+                        {s.name}
+                    </div>
+                    <div
                         onClick={() => {
                             checkForPanelExpand(i.toString());
                         }}
-                        type="primary"
-                        danger
-                        className="skill-list-header-content-button"
+                        className="skill-list-header-content-end"
                     >
                         {i.toString() === skillOpened ? (
-                            <CaretDownOutlined />
+                            <DownCircleFilled style={{ color: '#FFD101' }} />
                         ) : (
-                            <CaretLeftOutlined />
+                            <LeftCircleFilled style={{ color: '#FFD101' }} />
                         )}
-                    </Button>
+                    </div>
                 </div>
             );
             return (
@@ -83,7 +85,7 @@ const SkillTabComponent = () => {
                     key={i}
                     showArrow={false}
                 >
-                    <p>{s.description}</p>
+                    <Text>{s.description}</Text>
                 </Panel>
             );
         });
