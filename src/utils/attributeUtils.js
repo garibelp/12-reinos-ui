@@ -10,6 +10,7 @@ import Subclasses from '../mock/subclasses';
  * @param {string} race - Character race
  * @param {string} job - Character class
  * @param {string} subclass - Character subclass
+ * @param {number} level - Character level
  * @param {number} enhancedBonus - Enhanced class bonus
  * @returns {number} value of the attribute
  */
@@ -40,8 +41,7 @@ export function calculateAttribute(
         attrValue += extractBonusAttr(race, Races);
     }
     if (job) {
-        const levelMultiplier = Math.ceil(level / 2);
-        attrValue += extractBonusAttr(job, Jobs) * levelMultiplier;
+        attrValue += extractBonusAttr(job, Jobs);
     }
     if (subclass) {
         attrValue += extractBonusAttr(subclass, Subclasses);

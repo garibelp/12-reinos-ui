@@ -21,7 +21,13 @@ const AttributeTableComponent = (props) => {
 
     return (
         <RadioGroup style={{ width: '100%' }}>
-            <Descriptions size="small" layout="vertical" bordered span={2}>
+            <Descriptions
+                className="attribute-table"
+                size="small"
+                layout="vertical"
+                bordered
+                span={2}
+            >
                 {Object.entries(AttributeEnum).map((attr) => {
                     const baseAttributeValue = calculateAttribute(
                         attr[1].base,

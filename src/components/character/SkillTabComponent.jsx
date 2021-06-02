@@ -85,7 +85,7 @@ const SkillTabComponent = () => {
                     key={i}
                     showArrow={false}
                 >
-                    <Text>{s.description}</Text>
+                    <div className="skill-description">{s.description}</div>
                 </Panel>
             );
         });

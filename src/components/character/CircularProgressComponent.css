@@ -2,6 +2,24 @@
     margin: 0 5px;
 }
 
-.circular-progress {
+.circular-progress-margin {
     margin: 10px 0 10px 0;
+}
+
+.circular-progress {
+    display: flex;
+    align-items: center;
+}
+
+.test-checkbox-s > .ant-checkbox {
+    background: darkseagreen;
+}
+
+.test-checkbox-e > .ant-checkbox {
+    /*background: tomato;*/
+    background: lightpink;
+}
+
+.progress-field-with-check {
+    margin-top: 2px;
 }

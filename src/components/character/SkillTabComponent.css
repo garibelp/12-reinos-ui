@@ -54,3 +54,8 @@
     text-align: end;
     width: 40px;
 }
+
+.skill-description {
+    white-space: pre-line;
+    text-align: justify;
+}

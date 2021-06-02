@@ -274,6 +274,7 @@ const CharTabComponent = () => {
                                     }
                                     currentPoints={currentLife}
                                     maxPoints={totalLife}
+                                    displayTest
                                 />
                             </Space>
                         </Col>

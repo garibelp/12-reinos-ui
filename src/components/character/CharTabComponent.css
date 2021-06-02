@@ -25,8 +25,8 @@
 }
 
 .charsheet-internal-card {
-    color: #d89614;
-    background: #58181c;
+    /*color: #d89614;*/
+    background: #1F1F1F;
     height: 25px;
 }
 
@@ -44,16 +44,16 @@
 .ant-descriptions-item-label.attr-offense,
 .ant-descriptions-item-label.attr-defense,
 .ant-descriptions-item-label.attr-base {
-    background-color: #58181c;
+    background-color: #1F1F1F;
     font-weight: bold;
 }
 
 .ant-descriptions-item-content.attr-offense {
-    background-color: firebrick;
+    background-color: peru;
 }
 
 .ant-descriptions-item-content.attr-defense {
-    background-color: peru;
+    background-color: steelblue;
 }
 
 .ant-descriptions-item-content.attr-base {
