@@ -244,7 +244,6 @@ const Backgrounds = [
         },
         bond: BondEnum.CRED,
     },
-
 ];
 
 export default Backgrounds;
