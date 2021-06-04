@@ -94,25 +94,21 @@ const AttributesDisplayComponent = (props) => {
                                         />
                                     </Col>
                                     <Col span={8}>
-                                        <Tooltip
-                                            placement="bottom"
-                                            title={attr[1].offense}
-                                        >
-                                            <StatusIconComponent
-                                                StatusIcon={Dice}
-                                                customIconCss={{
-                                                    fill: '#141414',
-                                                    width: '32px',
-                                                }}
-                                                customTextCss={{
-                                                    top: '46%',
-                                                    color: '#D89614',
-                                                }}
-                                                currentValue={(
-                                                    baseAttributeValue - 3
-                                                ).toString()}
-                                            />
-                                        </Tooltip>
+                                        <StatusIconComponent
+                                            tooltipMessage={attr[1].offense}
+                                            StatusIcon={Dice}
+                                            customIconCss={{
+                                                fill: '#141414',
+                                                width: '32px',
+                                            }}
+                                            customTextCss={{
+                                                top: '46%',
+                                                color: '#D89614',
+                                            }}
+                                            currentValue={(
+                                                baseAttributeValue - 3
+                                            ).toString()}
+                                        />
                                     </Col>
                                 </Row>
                             </Card>

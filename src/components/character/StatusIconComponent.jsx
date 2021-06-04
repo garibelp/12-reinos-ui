@@ -1,3 +1,4 @@
+import { Tooltip } from 'antd';
 import PropTypes from 'prop-types';
 import React from 'react';
 
@@ -11,6 +12,7 @@ const StatusIconComponent = (props) => {
         customIconCss,
         customTextCss,
         customTitleCss,
+        tooltipMessage,
     } = props;
     return (
         <>
@@ -19,9 +21,11 @@ const StatusIconComponent = (props) => {
             </div>
             <div>
                 <StatusIcon className="status-icon" style={customIconCss} />
-                <div className="status-text" style={customTextCss}>
-                    {currentValue}
-                </div>
+                <Tooltip placement="bottom" title={tooltipMessage}>
+                    <div className="status-text" style={customTextCss}>
+                        {currentValue}
+                    </div>
+                </Tooltip>
             </div>
         </>
     );
@@ -31,6 +35,7 @@ StatusIconComponent.propTypes = {
     statusName: PropTypes.string,
     StatusIcon: PropTypes.object.isRequired,
     currentValue: PropTypes.any,
+    tooltipMessage: PropTypes.string,
     customTitleCss: PropTypes.objectOf(PropTypes.any),
     customTextCss: PropTypes.objectOf(PropTypes.any),
     customIconCss: PropTypes.objectOf(PropTypes.any),
@@ -39,6 +44,7 @@ StatusIconComponent.propTypes = {
 StatusIconComponent.defaultProps = {
     statusName: '',
     currentValue: '',
+    tooltipMessage: null,
     customTitleCss: {},
     customTextCss: {},
     customIconCss: {},
