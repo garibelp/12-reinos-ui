@@ -21,6 +21,7 @@ import TextArea from 'antd/lib/input/TextArea';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
+import { ReactComponent as AttributesSvg } from '../../assets/images/attributes.svg';
 import { ReactComponent as DiceSvg } from '../../assets/images/d20.svg';
 import { ReactComponent as GearSvg } from '../../assets/images/gear.svg';
 import { ReactComponent as LinkSvg } from '../../assets/images/link.svg';
@@ -191,7 +192,7 @@ const CharTabComponent = () => {
                     />
                 </Col>
             </Row>
-            <Row>
+            <Row style={{ height: '30px' }}>
                 <Col span={8}>
                     <FormItem label="Classe" rules={[{ required: true }]}>
                         <Select
@@ -241,21 +242,51 @@ const CharTabComponent = () => {
                     </FormItem>
                 </Col>
             </Row>
-            <Divider />
+            <Divider style={{ margin: '10px 0' }} />
             <Row gutter={[5, 5]}>
-                <Col span={12}>
-                    <AttributesDisplayComponent
-                        background={background}
-                        race={race}
-                        job={job}
-                        subclass={subclass}
-                        defective={defective}
-                        level={level}
-                        enhancedAttribute={enhancedAttribute}
-                    />
+                <Col
+                    style={{
+                        borderRight: '1px solid rgba(255, 255, 255, 0.1)',
+                    }}
+                    span={12}
+                >
+                    <Row>
+                        <AptitudesComponent />
+                    </Row>
+                    <Divider style={{ margin: '15px 0' }} />
+                    <Row>
+                        <Col
+                            span={24}
+                            style={{
+                                display: 'flex',
+                                alignContent: 'center',
+                                placeContent: 'center',
+                                marginBottom: '5px',
+                            }}
+                        >
+                            <AttributesSvg
+                                style={{
+                                    fill: 'white',
+                                    width: '18px',
+                                    height: '18px',
+                                    marginRight: '5px',
+                                }}
+                            />
+                            Atributos
+                        </Col>
+                        <AttributesDisplayComponent
+                            background={background}
+                            race={race}
+                            job={job}
+                            subclass={subclass}
+                            defective={defective}
+                            level={level}
+                            enhancedAttribute={enhancedAttribute}
+                        />
+                    </Row>
                 </Col>
                 <Col span={12}>
-                    <Row style={{ textAlign: 'center' }} gutter={[10, 10]}>
+                    <Row gutter={[10, 10]}>
                         <Col span={8}>
                             <span className="charsheet-attr-title">
                                 <Space>
@@ -519,7 +550,7 @@ const CharTabComponent = () => {
                             </Row>
                         </Col>
                     </Row>
-                    <Divider style={{ margin: '10px 0' }} />
+                    <Divider />
                     <Row>
                         <Col span={24}>
                             <Row
@@ -559,42 +590,36 @@ const CharTabComponent = () => {
                                 </Col>
                             </Row>
                         </Col>
+                        <Divider style={{ margin: '10px 0' }} />
+                        <Col span={24}>
+                            <Row
+                                style={{
+                                    justifyContent: 'center',
+                                    marginBottom: '10px',
+                                }}
+                            >
+                                <MotivationSvg
+                                    style={{
+                                        height: '15px',
+                                        width: '15px',
+                                        fill: 'white',
+                                        marginRight: '5px',
+                                    }}
+                                />
+                                Motivação
+                            </Row>
+                            <TextArea
+                                onBlur={(v) => {
+                                    // TODO: set motivation
+                                    // dispatch(charActions.setMotivation(v));
+                                }}
+                                style={{ marginLeft: '2px' }}
+                                rows={2}
+                                placeholder="Inserir motivação"
+                                size="small"
+                            />
+                        </Col>
                     </Row>
-                </Col>
-            </Row>
-            <Divider style={{ margin: '10px 0' }} />
-            <Row>
-                <Col span={12}>
-                    <AptitudesComponent />
-                </Col>
-                <Col span={12}>
-                    <Row
-                        style={{
-                            justifyContent: 'center',
-                            marginBottom: '10px',
-                        }}
-                    >
-                        <MotivationSvg
-                            style={{
-                                height: '15px',
-                                width: '15px',
-                                fill: 'white',
-                                marginRight: '5px',
-                            }}
-                        />
-                        Motivação
-                    </Row>
-                    <FormItem wrapperCol={8}>
-                        <TextArea
-                            onBlur={(v) => {
-                                // TODO: set motivation
-                                // dispatch(charActions.setMotivation(v));
-                            }}
-                            rows={1}
-                            placeholder="Inserir motivação"
-                            size="small"
-                        />
-                    </FormItem>
                 </Col>
             </Row>
         </>

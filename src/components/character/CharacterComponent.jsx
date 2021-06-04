@@ -80,7 +80,7 @@ const CharacterComponent = () => {
                         TODO: Items
                     </TabPane>
                 </Tabs>
-                <Divider />
+                <Divider style={{ margin: '10px 0' }} />
                 <Row justify="center">
                     <Col span={12}>
                         <Button

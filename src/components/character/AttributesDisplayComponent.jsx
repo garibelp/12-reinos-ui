@@ -51,7 +51,7 @@ const AttributesDisplayComponent = (props) => {
                                 title={attr[1].base}
                             >
                                 <Row
-                                    style={{ width: '100%' }}
+                                    style={{ width: '100%', margin: '0 5px' }}
                                     className="center-content"
                                 >
                                     <Col span={8}>
@@ -70,7 +70,7 @@ const AttributesDisplayComponent = (props) => {
                                             currentValue={
                                                 <Text
                                                     style={{
-                                                        fontSize: '25px',
+                                                        fontSize: '35px',
                                                     }}
                                                     strong
                                                 >
@@ -84,7 +84,8 @@ const AttributesDisplayComponent = (props) => {
                                                         ? defectiveColor
                                                         : 'dimgrey'
                                                 }`,
-                                                width: '35px',
+                                                width: '45px',
+                                                margin: '5px',
                                             }}
                                             customTextCss={{
                                                 top: '46%',

@@ -42,7 +42,7 @@ const AptitudesComponent = (props) => {
                     </Space>
                 </span>
             </Col>
-            <Row style={{ marginLeft: '5px' }} gutter={[3, 3]}>
+            <Row style={{ width: '100%' }} gutter={[3, 3]}>
                 <Col span={8}>
                     <Select
                         className="aptitude-select"
