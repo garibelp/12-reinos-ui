@@ -489,8 +489,8 @@ const CharTabComponent = () => {
                                     <Tooltip title="Atributo modificado">
                                         <Select
                                             style={{
-                                                width: '150px',
-                                                marginLeft: '5px',
+                                                width: '190px',
+                                                marginLeft: '10px',
                                             }}
                                             disabled={race !== 'Alterado'}
                                             value={enhancedAttribute}
@@ -501,7 +501,7 @@ const CharTabComponent = () => {
                                                     )
                                                 );
                                             }}
-                                            placeholder="Atributo"
+                                            placeholder="Selecionar atributo"
                                         >
                                             {Object.entries(AttributeEnum).map(
                                                 (attr) => (

@@ -28,9 +28,9 @@
 }
 
 .charsheet-internal-card {
-    /*color: #d89614;*/
     background: #1F1F1F;
-    height: 25px;
+    height: 24px;
+    border: 1px solid #D89614;
 }
 
 .attr-defense,

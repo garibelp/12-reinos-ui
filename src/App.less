@@ -1,35 +1,56 @@
 @import '~antd/dist/antd.dark.less';
 
 .app-layout {
-    height: 100%;
-    background-image: linear-gradient(black, dimgrey, black);
+  height: 100%;
+  background-image: radial-gradient(maroon, black);
 }
 
 .ant-layout-content {
-    align-self: center;
+  align-self: center;
 }
 
 .ant-select,
 .ant-input-number-input,
 .ant-input {
-    background-color: #1F1F1F !important;
+  background-color: #1F1F1F !important;
 }
 
 .ant-tabs-tab {
-    width: 150px;
-    justify-content: center;
+  width: 150px;
+  justify-content: center;
 }
 
 .ant-tabs-tab-btn {
-    color: #d89614 !important;
+  color: #d89614 !important;
 }
 
 .ant-progress-text {
-    color: white !important;
+  color: white !important;
 }
 
 .ant-divider {
-    margin: 0 0 10px 0;
+  margin: 0 0 10px 0;
+}
+
+.menu-header {
+}
+
+.menu-header > .ant-menu-item-selected {
+  background: inherit;
+}
+
+.menu-header > .ant-menu-item-disabled {
+  background: black;
+}
+
+.menu-header > .ant-menu-item {
+  width: 120px;
+  text-align: center;
+  background: black;
+}
+
+.site-layout-background {
+  padding: 0;
 }
 
 /* // "root": true,

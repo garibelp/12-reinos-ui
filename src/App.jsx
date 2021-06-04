@@ -9,13 +9,15 @@ const { Item } = Menu;
 
 const App = () => (
     <Layout className="app-layout">
-        <Header className="site-layout-background" style={{ padding: 0 }}>
-            <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['1']}>
+        <Header className="site-layout-background">
+            <Menu
+                theme="dark"
+                mode="horizontal"
+                className="menu-header"
+                defaultSelectedKeys={['1']}
+            >
+                <Item key="1">Personagem</Item>
                 <Item key="2" disabled>
-                    Personagens
-                </Item>
-                <Item key="1">Ficha Atual</Item>
-                <Item key="3" disabled>
                     Mesas
                 </Item>
             </Menu>
@@ -23,7 +25,7 @@ const App = () => (
         <Content
             className="site-layout-background"
             style={{
-                margin: '24px 16px',
+                // margin: '24px 16px',
                 padding: 24,
                 minHeight: 280,
             }}
