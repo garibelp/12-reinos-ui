@@ -286,7 +286,7 @@ const CharTabComponent = () => {
                     </Row>
                 </Col>
                 <Col span={12}>
-                    <Row gutter={[10, 10]}>
+                    <Row style={{ textAlign: 'center' }} gutter={[10, 10]}>
                         <Col span={8}>
                             <span className="charsheet-attr-title">
                                 <Space>
@@ -583,6 +583,7 @@ const CharTabComponent = () => {
                                         onBlur={(v) => {
                                             // TODO: set bond
                                         }}
+                                        style={{ height: '24px' }}
                                         rows={1}
                                         placeholder="Descrição de vínculo"
                                         size="small"
@@ -613,7 +614,7 @@ const CharTabComponent = () => {
                                     // TODO: set motivation
                                     // dispatch(charActions.setMotivation(v));
                                 }}
-                                style={{ marginLeft: '2px' }}
+                                style={{ marginLeft: '2px', height: '46px' }}
                                 rows={2}
                                 placeholder="Inserir motivação"
                                 size="small"
