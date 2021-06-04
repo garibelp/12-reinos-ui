@@ -3,8 +3,7 @@ import {
     LeftCircleFilled,
     ThunderboltFilled,
 } from '@ant-design/icons';
-import { Button, Collapse, Divider, Progress, Space } from 'antd';
-import Text from 'antd/es/typography/Text';
+import { Button, Collapse, Divider, Progress } from 'antd';
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 

@@ -13,15 +13,18 @@
 }
 
 .charsheet-race-info-card {
-    width: 230px;
+    width: 110px;
 }
 
 .charsheet-bond-info-card {
     margin-bottom: 5px;
+    margin-left: 2px;
+    width: 110px;
+    text-align: center;
 }
 
 .charsheet-race-info-col {
-    text-align: center;
+    text-align: -webkit-center;
 }
 
 .charsheet-internal-card {
@@ -60,3 +63,6 @@
     background-color: gray;
 }
 
+.ant-input-sm {
+    min-height: 24px !important;
+}

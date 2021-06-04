@@ -1,0 +1,56 @@
+.attribute-card {
+    text-align: center;
+    width: 200px;
+    margin: 18px 14px 0 14px;
+    background: #313131;
+}
+
+.center-content,
+.attribute-card > .ant-card-body {
+    display: flex;
+    align-items: center;
+    padding: 0;
+}
+
+.attribute-card > .ant-card-head {
+    font-weight: bold;
+    color: #D89614;
+    background: #141414;
+}
+
+.attribute-table {
+    text-align: -webkit-center;
+}
+
+.attr-def-avatar {
+    margin-right: auto;
+    font-weight: bold;
+    background: #141414;
+    color: cornflowerblue;
+    padding-bottom: 5px;
+}
+
+.attr-off-avatar {
+    margin-left: auto;
+    font-weight: bold;
+    background: #D89614;
+}
+
+.attribute-radio {
+    height: 21px;
+}
+
+.attribute-radio > .ant-radio > .ant-radio-inner {
+    border-color: dimgray;
+}
+
+.dice-roll-icon {
+    width: 32px;
+    height: 32px;
+    fill: #D89614;;
+}
+
+.offense-value {
+    z-index: 1;
+    height: 0;
+}

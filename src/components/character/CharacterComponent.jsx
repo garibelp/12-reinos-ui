@@ -27,12 +27,7 @@ const CharacterComponent = () => {
             }
         >
             <Form size="small" labelCol={{ span: 9 }} wrapperCol={{ span: 15 }}>
-                <Tabs
-                    defaultActiveKey="1"
-                    type="card"
-                    centered
-                    style={{ marginBottom: 32 }}
-                >
+                <Tabs defaultActiveKey="1" type="card" centered>
                     <TabPane
                         key="1"
                         tab={

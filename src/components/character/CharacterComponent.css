@@ -1,6 +1,6 @@
 .character-card {
     width: 1000px;
-    height: 800px;
+    height: 750px;
     background-color: #a12e39;
 }
 
@@ -10,7 +10,7 @@
 }
 
 .character-card > .ant-card-body {
-    height: 720px;
+    /*height: 720px;*/
 }
 
 .character-card-attributes {

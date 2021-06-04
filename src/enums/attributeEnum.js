@@ -1,4 +1,4 @@
-export default Object.freeze({
+const AttributeEnum = Object.freeze({
     FOR: {
         base: 'Força',
         offense: 'Potência',
@@ -30,3 +30,5 @@ export default Object.freeze({
         defense: 'Espírito',
     },
 });
+
+export default AttributeEnum;

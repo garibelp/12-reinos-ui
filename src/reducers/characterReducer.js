@@ -17,6 +17,7 @@ const { actions, reducer } = createSlice({
         subclass: null,
         motivation: null,
         defective: false,
+        enhancedAttribute: null,
     },
     reducers: {
         setCurrentLife: (state, action) => {
@@ -75,6 +76,10 @@ const { actions, reducer } = createSlice({
             const { payload } = action;
             state.defective = payload;
         },
+        setEnhancedAttribute: (state, action) => {
+            const { payload } = action;
+            state.enhancedAttribute = payload;
+        },
         setCharacterInfoBlock: (state, action) => {
             const { payload } = action;
             Object.entries(payload).forEach((attribute) => {
@@ -100,6 +105,7 @@ export const {
     setTotalLife,
     setTotalMana,
     setCharacterInfoBlock,
+    setEnhancedAttribute,
 } = actions;
 
 export default reducer;
