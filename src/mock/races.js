@@ -11,7 +11,7 @@ const Races = Object.freeze([
             category: SizeEnum.MED,
             description: 'Pode variar entre 90cm a 1,50m.',
         },
-        mov: 7.5,
+        mov: 6,
         lang: [LanguagesEnum.COMUM, LanguagesEnum.ANAO],
         pro: {
             name: 'Azarão',
@@ -32,7 +32,7 @@ const Races = Object.freeze([
             category: SizeEnum.MED,
             description: 'Pode variar entre 1,60m a 1,80m.',
         },
-        mov: 9,
+        mov: 6,
         lang: [LanguagesEnum.COMUM, LanguagesEnum.ANG],
         pro: {
             name: 'Veneno',
@@ -53,7 +53,7 @@ const Races = Object.freeze([
             category: SizeEnum.GRD,
             description: 'Pode variar entre 2,5m a 3m.',
         },
-        mov: 7.5,
+        mov: 6,
         lang: [LanguagesEnum.COMUM, LanguagesEnum.GIGA],
         pro: {
             name: 'Gigantismo',
@@ -77,7 +77,7 @@ const Races = Object.freeze([
             category: SizeEnum.MED,
             description: 'Raça base',
         },
-        mov: 9,
+        mov: 6,
         lang: [LanguagesEnum.COMUM, LanguagesEnum.ELFO],
         pro: {
             name: 'Melhorado',
@@ -88,6 +88,27 @@ const Races = Object.freeze([
             name: 'Defeituoso',
             description:
                 'Claro que nenhuma melhoria sai de graça, especialmente se você não tem a capacidade de auto-manutenção dos Asharianos. Alterados devem fazer Testes de Tolerância, com dificuldade a depender da situação, sempre que passarem por locais que possam afetar seu funcionamento. Seja água, areia, calor ou frio, em caso de falha, o Alterado perde o Ponto de Atributo extra e passa a ter o valor fixo de -1 naquele Atributo em específico até descansar.',
+        },
+    },
+    {
+        name: 'Áquila',
+        age:
+            'Áquilas atingem a maturidade com 40 anos, e vivem em média até os 150.',
+        size: {
+            category: SizeEnum.MED,
+            description: 'Pode variar entre 1,70cm a 2m.',
+        },
+        mov: 6,
+        lang: [LanguagesEnum.COMUM, LanguagesEnum.ANAO],
+        pro: {
+            name: 'Vôo',
+            description:
+                'As majestosas asas dos Áquilas os permitem voar, com deslocamento de 9m. Alçar vôo em combate não abre Ataque de Oportunidade.',
+        },
+        con: {
+            name: 'Liberdade',
+            description:
+                'Como seres do ar, Áquilas precisam sentir-se livres constantemente. A qualquer sinal de aprisionamento, seja físico, emocional ou psicológico, um Áquila não consegue usufruir dos privilégios de um descanso. Seja por algo grave como encarceiramento, ou algo simples como um contrato, Áquilas facilmente sentem sua liberdade ameaçada.',
         },
     },
 ]);
