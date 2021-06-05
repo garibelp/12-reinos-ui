@@ -2,6 +2,7 @@ import { Layout, Menu } from 'antd';
 import React from 'react';
 
 import './App.less';
+import LogoPng from './assets/images/logo_nome.png';
 import CharacterComponent from './components/character/CharacterComponent';
 
 const { Header, Content } = Layout;
@@ -9,7 +10,7 @@ const { Item } = Menu;
 
 const App = () => (
     <Layout className="app-layout">
-        <Header className="site-layout-background">
+        <Header className="site-layout-header">
             <Menu
                 theme="dark"
                 mode="horizontal"
@@ -21,9 +22,13 @@ const App = () => (
                     Mesas
                 </Item>
             </Menu>
+            <img
+                style={{ width: '145px', marginRight: '10px' }}
+                src={LogoPng}
+            />
         </Header>
         <Content
-            className="site-layout-background"
+            className="site-layout-header"
             style={{
                 padding: '24px 0',
                 minHeight: 280,

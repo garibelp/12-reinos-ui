@@ -6,6 +6,7 @@ import {
 } from '@ant-design/icons';
 import {
     Card,
+    Checkbox,
     Col,
     Divider,
     Form,
@@ -25,9 +26,9 @@ import { ReactComponent as AttributesSvg } from '../../assets/images/attributes.
 import { ReactComponent as DiceSvg } from '../../assets/images/d20.svg';
 import { ReactComponent as GearSvg } from '../../assets/images/gear.svg';
 import { ReactComponent as LinkSvg } from '../../assets/images/link.svg';
-import logo from '../../assets/images/logo_nome.png';
 import { ReactComponent as MotivationSvg } from '../../assets/images/motivation.svg';
 import { ReactComponent as ShieldSvg } from '../../assets/images/shield.svg';
+import { ReactComponent as SkullSvg } from '../../assets/images/skull.svg';
 import AttributeEnum from '../../enums/attributeEnum';
 import JobInfoEnum from '../../enums/jobInfoEnum';
 import RaceInfoEnum from '../../enums/raceInfoEnum';
@@ -169,27 +170,82 @@ const CharTabComponent = () => {
                         </Select>
                     </FormItem>
                 </Col>
-                <Col span={4} style={{ marginLeft: '8px' }}>
-                    <FormItem label="Nível" rules={[{ required: true }]}>
-                        <InputNumber
-                            min={1}
-                            max={3}
-                            value={level}
-                            onChange={(levelValue) => {
-                                setJobValues(job, levelValue);
-                            }}
-                        />
-                    </FormItem>
-                </Col>
-                <Col span={3}>
-                    <img
-                        src={logo}
-                        alt="logo"
-                        style={{
-                            width: '150px',
-                            marginTop: '-20px',
-                        }}
-                    />
+                <Col span={8}>
+                    <Row style={{ width: '100%' }}>
+                        <Col span={16} style={{ textAlign: 'right' }}>
+                            Nível :
+                            <InputNumber
+                                min={1}
+                                max={3}
+                                value={level}
+                                style={{
+                                    margin: '0 12px 0 8px',
+                                    width: '80px',
+                                }}
+                                onChange={(levelValue) => {
+                                    setJobValues(job, levelValue);
+                                }}
+                            />
+                        </Col>
+                        <Col style={{ alignSelf: 'center' }} span={2}>
+                            <SkullSvg
+                                style={{
+                                    fill: 'white',
+                                    width: '25px',
+                                    height: '25px',
+                                }}
+                            />
+                        </Col>
+                        <Col span={6}>
+                            <Checkbox.Group>
+                                <Row style={{ width: '100%' }}>
+                                    <Tooltip
+                                        title={`Sucessos em testes contra a morte`}
+                                    >
+                                        <Col
+                                            style={{ textAlign: 'center' }}
+                                            span={24}
+                                        >
+                                            <Checkbox
+                                                className="check-death-success"
+                                                value="1"
+                                            />
+                                            <Checkbox
+                                                className="check-death-success"
+                                                value="2"
+                                            />
+                                            <Checkbox
+                                                className="check-death-success"
+                                                value="3"
+                                            />
+                                        </Col>
+                                    </Tooltip>
+                                    <Tooltip
+                                        title={`Falhas em testes contra a morte`}
+                                        placement="bottom"
+                                    >
+                                        <Col
+                                            style={{ textAlign: 'center' }}
+                                            span={24}
+                                        >
+                                            <Checkbox
+                                                className="check-death-fail"
+                                                value="4"
+                                            />
+                                            <Checkbox
+                                                className="check-death-fail"
+                                                value="5"
+                                            />
+                                            <Checkbox
+                                                className="check-death-fail"
+                                                value="6"
+                                            />
+                                        </Col>
+                                    </Tooltip>
+                                </Row>
+                            </Checkbox.Group>
+                        </Col>
+                    </Row>
                 </Col>
             </Row>
             <Row style={{ height: '30px' }}>
@@ -550,7 +606,7 @@ const CharTabComponent = () => {
                             </Row>
                         </Col>
                     </Row>
-                    <Divider />
+                    <Divider style={{ margin: '10px 0' }} />
                     <Row>
                         <Col span={24}>
                             <Row

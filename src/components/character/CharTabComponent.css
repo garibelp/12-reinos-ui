@@ -66,3 +66,11 @@
 .ant-input-sm {
     min-height: 24px !important;
 }
+
+.check-death-success > .ant-checkbox {
+    background: darkseagreen;
+}
+
+.check-death-fail > .ant-checkbox {
+    background: lightpink;
+}

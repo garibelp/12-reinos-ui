@@ -9,15 +9,7 @@
 .circular-progress {
     display: flex;
     align-items: center;
-}
-
-.test-checkbox-s > .ant-checkbox {
-    background: darkseagreen;
-}
-
-.test-checkbox-e > .ant-checkbox {
-    /*background: tomato;*/
-    background: lightpink;
+    margin-top: 10px;
 }
 
 .progress-field-with-check {
