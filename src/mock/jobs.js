@@ -33,6 +33,42 @@ const Jobs = Object.freeze([
         ],
     },
     {
+        [JobInfoEnum.NAME]: 'Artista',
+        [JobInfoEnum.LIFE]: 6,
+        [JobInfoEnum.MANA]: 2,
+        [JobInfoEnum.ARMOR]: 1,
+        [JobInfoEnum.HIT_DICE]: 'd6',
+        [JobInfoEnum.BONUS_ATTR]: {
+            [attributeEnum.DES.base]: 2,
+        },
+        [JobInfoEnum.SKILLS]: [
+            {
+                [SkillInfoEnum.NAME]: 'Magia: Charme',
+                [SkillInfoEnum.LEVEL]: 1,
+                [SkillInfoEnum.COST]: 0,
+                [SkillInfoEnum.DESC]: `Quando user essa magia, faça um Teste de Precisão contra a Vontade de um alvo indiferente a você. Se o alvo falhar, torna-se amigável a você.`,
+            },
+            {
+                [SkillInfoEnum.NAME]: 'Magia: Crítica',
+                [SkillInfoEnum.LEVEL]: 1,
+                [SkillInfoEnum.COST]: 0,
+                [SkillInfoEnum.DESC]: `Ao usar essa magia, faça um Teste de Precisão contra a Vontade de um alvo. Se o alvo falhar, sofre 1d6 de dano.`,
+            },
+            {
+                [SkillInfoEnum.NAME]: 'Magia: Surto Criativo',
+                [SkillInfoEnum.LEVEL]: 1,
+                [SkillInfoEnum.COST]: 1,
+                [SkillInfoEnum.DESC]: `Quando usar essa magia, use outra magia como Ação Bônus. O custo de mana dela permanece o mesmo.`,
+            },
+            {
+                [SkillInfoEnum.NAME]: 'Magia: Aclamar',
+                [SkillInfoEnum.LEVEL]: 1,
+                [SkillInfoEnum.COST]: 1,
+                [SkillInfoEnum.DESC]: `Essa magia é conjurada para curar um alvo. Apenas o aclame como ação bônus e cure 2d6.`,
+            },
+        ],
+    },
+    {
         [JobInfoEnum.NAME]: 'Atirador',
         [JobInfoEnum.LIFE]: 8,
         [JobInfoEnum.MANA]: 0,
