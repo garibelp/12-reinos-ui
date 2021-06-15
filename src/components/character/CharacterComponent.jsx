@@ -1,20 +1,5 @@
-import {
-    FireFilled,
-    UserOutlined,
-    FileTextFilled,
-    ExperimentFilled,
-} from '@ant-design/icons';
-import {
-    Card,
-    Form,
-    Row,
-    Tabs,
-    Button,
-    Space,
-    Divider,
-    Col,
-    Modal,
-} from 'antd';
+import { FireFilled, UserOutlined, ExperimentFilled } from '@ant-design/icons';
+import { Card, Form, Tabs } from 'antd';
 import React, { useState } from 'react';
 
 import CharTabComponent from './CharTabComponent';

@@ -33,7 +33,7 @@ const AttributesDisplayComponent = (props) => {
 
     return (
         <RadioGroup style={{ width: '100%' }}>
-            <Row title="Atributos" className="attribute-table">
+            <Row className="attribute-table">
                 {Object.entries(AttributeEnum).map((attr) => {
                     const baseAttributeValue = calculateAttribute(
                         attr[1].base,
@@ -100,6 +100,7 @@ const AttributesDisplayComponent = (props) => {
                                             customIconCss={{
                                                 fill: '#141414',
                                                 width: '32px',
+                                                margin: 0,
                                             }}
                                             customTextCss={{
                                                 top: '46%',

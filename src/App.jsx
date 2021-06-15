@@ -25,6 +25,7 @@ const App = () => (
             <img
                 style={{ width: '145px', marginRight: '10px' }}
                 src={LogoPng}
+                alt=""
             />
         </Header>
         <Content

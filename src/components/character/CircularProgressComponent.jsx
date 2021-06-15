@@ -1,5 +1,5 @@
 import { MinusCircleFilled, PlusCircleFilled } from '@ant-design/icons';
-import { Checkbox, Col, Progress, Row, Tooltip } from 'antd';
+import { Progress } from 'antd';
 import PropTypes from 'prop-types';
 import React from 'react';
 

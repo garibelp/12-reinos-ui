@@ -19,9 +19,9 @@ const StatusIconComponent = (props) => {
             <div className="status-title" style={customTitleCss}>
                 {statusName}
             </div>
-            <div>
-                <StatusIcon className="status-icon" style={customIconCss} />
+            <div className="status-body">
                 <Tooltip placement="bottom" title={tooltipMessage}>
+                    <StatusIcon className="status-icon" style={customIconCss} />
                     <div className="status-text" style={customTextCss}>
                         {currentValue}
                     </div>

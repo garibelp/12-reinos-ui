@@ -121,7 +121,6 @@ const CharTabComponent = () => {
         }
 
         const classArmor = extractJobInfo(value, JobInfoEnum.ARMOR);
-        console.log(levelToUse, life);
         charObject.currentArmor = classArmor;
         charObject.totalArmor = classArmor;
         charObject.job = value;
