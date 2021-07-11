@@ -96,6 +96,7 @@ const CharTabComponent = () => {
         // motivation,
         defective,
         enhancedAttribute,
+        currentBonusPoints,
     } = useSelector((state) => state.character);
 
     const dispatch = useDispatch();
@@ -327,7 +328,7 @@ const CharTabComponent = () => {
                                     marginRight: '5px',
                                 }}
                             />
-                            Atributos
+                            Atributos - Saldo: {currentBonusPoints}
                         </Col>
                         <AttributesDisplayComponent
                             background={background}

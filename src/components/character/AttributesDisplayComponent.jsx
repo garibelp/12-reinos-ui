@@ -137,14 +137,10 @@ const AttributesDisplayComponent = (props) => {
                                     <Col span={8}>
                                         <PlusCircleFilled
                                             style={{ marginBottom: '6px' }}
-                                            disabled={
-                                                isJobBaseAttr || isBgBaseAttr
-                                            }
                                             onClick={() => {
                                                 modifyAttribute(
                                                     attr[1].base,
-                                                    isJobBaseAttr ||
-                                                        isBgBaseAttr
+                                                    isBgBaseAttr
                                                 );
                                             }}
                                         />
@@ -183,8 +179,7 @@ const AttributesDisplayComponent = (props) => {
                                             onClick={() => {
                                                 modifyAttribute(
                                                     attr[1].base,
-                                                    isJobBaseAttr ||
-                                                        isBgBaseAttr,
+                                                    isBgBaseAttr,
                                                     true
                                                 );
                                             }}
