@@ -1,5 +1,14 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+import AttributeEnum from '../enums/attributeEnum';
+
+const defaultBonusAttribute = {
+    [AttributeEnum.TEN.base]: 0,
+    [AttributeEnum.INT.base]: 0,
+    [AttributeEnum.CEL.base]: 0,
+    [AttributeEnum.AST.base]: 0,
+};
+
 const { actions, reducer } = createSlice({
     name: 'character',
     initialState: {
@@ -18,6 +27,8 @@ const { actions, reducer } = createSlice({
         motivation: null,
         defective: false,
         enhancedAttribute: null,
+        bonusAttributes: defaultBonusAttribute,
+        currentBonusPoints: 3,
     },
     reducers: {
         setCurrentLife: (state, action) => {
@@ -55,6 +66,8 @@ const { actions, reducer } = createSlice({
         setBackground: (state, action) => {
             const { payload } = action;
             state.background = payload;
+            state.currentBonusPoints = 3;
+            state.bonusAttributes = defaultBonusAttribute;
         },
         setRace: (state, action) => {
             const { payload } = action;
@@ -63,6 +76,8 @@ const { actions, reducer } = createSlice({
         setJob: (state, action) => {
             const { payload } = action;
             state.job = payload;
+            state.currentBonusPoints = 3;
+            state.bonusAttributes = defaultBonusAttribute;
         },
         setSubclass: (state, action) => {
             const { payload } = action;
@@ -85,6 +100,16 @@ const { actions, reducer } = createSlice({
             Object.entries(payload).forEach((attribute) => {
                 state[attribute[0]] = attribute[1];
             });
+            state.currentBonusPoints = 3;
+            state.bonusAttributes = defaultBonusAttribute;
+        },
+        setBonusAttributes: (state, action) => {
+            const { payload } = action;
+            state.bonusAttributes = payload;
+        },
+        setCurrentBonusPoints: (state, action) => {
+            const { payload } = action;
+            state.currentBonusPoints = payload;
         },
     },
 });
@@ -106,6 +131,8 @@ export const {
     setTotalMana,
     setCharacterInfoBlock,
     setEnhancedAttribute,
+    setBonusAttributes,
+    setCurrentBonusPoints,
 } = actions;
 
 export default reducer;

@@ -1,6 +1,7 @@
 .attribute-card {
     text-align: center;
     width: 230px;
+    height: 156px;
     margin-top: 11px;
     background: #313131;
 }
@@ -10,11 +11,12 @@
     display: flex;
     align-items: center;
     padding: 0;
+    height: 115px;
 }
 
 .attribute-card > .ant-card-head {
     font-weight: bold;
-    color: #D89614;
+    color: #d89614;
     background: #141414;
 }
 
@@ -34,7 +36,7 @@
 .attr-off-avatar {
     margin-left: auto;
     font-weight: bold;
-    background: #D89614;
+    background: #d89614;
 }
 
 .attribute-radio {
@@ -48,11 +50,10 @@
 .dice-roll-icon {
     width: 32px;
     height: 32px;
-    fill: #D89614;;
+    fill: #d89614;
 }
 
 .offense-value {
     z-index: 1;
     height: 0;
 }
-

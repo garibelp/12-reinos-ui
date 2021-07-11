@@ -58,7 +58,7 @@ const Races = Object.freeze([
         pro: {
             name: 'Gigantismo',
             description:
-                'Para todos os efeitos, Gigasses são considados criaturas de tamanho Grande. Seu Valor de Atributo de Força é aumentado em 2 pontos, e o de Destreza é reduzido em 2 pontos.',
+                'Para todos os efeitos, Gigasses são considados criaturas de tamanho Grande. Seu Valor de Atributo de Tenacidade é aumentado em 2 pontos, e o de Celeridade é reduzido em 2 pontos.',
         },
         con: {
             name: 'Inadequados',
@@ -66,8 +66,8 @@ const Races = Object.freeze([
                 'É muito difícil encontrar coisas mundanas feitas para Gigasses. Desde estabelecimentos com cadeiras que suportem seu tamanho e peso, a armas e armaduras adequadas para seu porte. A vida de um Gigasse entre outras raças pode ser um pouco complicada. Caso esteja em um ambiente inapropriado para seu tamanho, não pode usar Aptidões em nenhum tipo de rolagem.',
         },
         bonusAttr: {
-            [AttributeEnum.FOR.base]: 2,
-            [AttributeEnum.DES.base]: -2,
+            [AttributeEnum.TEN.base]: 2,
+            [AttributeEnum.CEL.base]: -2,
         },
     },
     {

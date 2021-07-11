@@ -1,4 +1,3 @@
-import attributeEnum from '../enums/attributeEnum';
 import SkillInfoEnum from '../enums/skillInfoEnum';
 import SubclassInfoEnum from '../enums/subclassInfoEnum';
 
@@ -6,9 +5,7 @@ const Subclasses = Object.freeze([
     {
         [SubclassInfoEnum.NAME]: 'Demolicionista',
         [SubclassInfoEnum.JOB]: 'Artífice',
-        [SubclassInfoEnum.BONUS_ATTR]: {
-            [attributeEnum.CAR.base]: 2,
-        },
+        [SubclassInfoEnum.BONUS_ATTR]: {},
         [SubclassInfoEnum.SKILLS]: [
             {
                 [SkillInfoEnum.NAME]: 'Granadas',
@@ -22,9 +19,7 @@ const Subclasses = Object.freeze([
     {
         [SubclassInfoEnum.NAME]: 'Ferreiro',
         [SubclassInfoEnum.JOB]: 'Artífice',
-        [SubclassInfoEnum.BONUS_ATTR]: {
-            [attributeEnum.DES.base]: 2,
-        },
+        [SubclassInfoEnum.BONUS_ATTR]: {},
         [SubclassInfoEnum.SKILLS]: [
             {
                 [SkillInfoEnum.NAME]: 'Mini-gambis',
@@ -38,9 +33,7 @@ const Subclasses = Object.freeze([
     {
         [SubclassInfoEnum.NAME]: 'Artilheiro',
         [SubclassInfoEnum.JOB]: 'Atirador',
-        [SubclassInfoEnum.BONUS_ATTR]: {
-            [attributeEnum.CON.base]: 2,
-        },
+        [SubclassInfoEnum.BONUS_ATTR]: {},
         [SubclassInfoEnum.SKILLS]: [
             {
                 [SkillInfoEnum.NAME]: 'Escopeta',
@@ -54,9 +47,7 @@ const Subclasses = Object.freeze([
     {
         [SubclassInfoEnum.NAME]: 'Pistoleiro',
         [SubclassInfoEnum.JOB]: 'Atirador',
-        [SubclassInfoEnum.BONUS_ATTR]: {
-            [attributeEnum.CAR.base]: 2,
-        },
+        [SubclassInfoEnum.BONUS_ATTR]: {},
         [SubclassInfoEnum.SKILLS]: [
             {
                 [SkillInfoEnum.NAME]: 'Na Mosca',

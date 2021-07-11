@@ -28,9 +28,9 @@
 }
 
 .charsheet-internal-card {
-    background: #1F1F1F;
+    background: #1f1f1f;
     height: 24px;
-    border: 1px solid #D89614;
+    border: 1px solid #d89614;
 }
 
 .attr-defense,
@@ -47,7 +47,7 @@
 .ant-descriptions-item-label.attr-offense,
 .ant-descriptions-item-label.attr-defense,
 .ant-descriptions-item-label.attr-base {
-    background-color: #1F1F1F;
+    background-color: #1f1f1f;
     font-weight: bold;
 }
 

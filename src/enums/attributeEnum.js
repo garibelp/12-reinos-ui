@@ -1,33 +1,23 @@
 const AttributeEnum = Object.freeze({
-    FOR: {
-        base: 'Força',
-        offense: 'Potência',
-        defense: 'Pujança',
+    TEN: {
+        base: 'Tenacidade',
+        offense: 'Força',
+        defense: 'Constituição',
     },
-    DES: {
-        base: 'Destreza',
+    CEL: {
+        base: 'Celeridade',
         offense: 'Precisão',
         defense: 'Esquiva',
     },
-    CON: {
-        base: 'Constituição',
-        offense: 'Vigor',
-        defense: 'Tenacidade',
-    },
     INT: {
-        base: 'Inteligência',
+        base: 'Intelecto',
         offense: 'Raciocínio',
         defense: 'Lucidez',
     },
-    SAB: {
-        base: 'Sabedoria',
-        offense: 'Augúria',
-        defense: 'Vontade',
-    },
-    CAR: {
-        base: 'Carisma',
+    AST: {
+        base: 'Astúcia',
         offense: 'Perspicácia',
-        defense: 'Espírito',
+        defense: 'Vontade',
     },
 });
 

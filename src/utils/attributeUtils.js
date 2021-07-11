@@ -119,3 +119,29 @@ export function extractSubclassInfo(subclassName, value) {
     }
     return null;
 }
+
+/**
+ * @param {string} jobName - Name of the job being retrieved
+ * @returns {string} Bonus Attribute name
+ */
+export function extractJobBonusAttributeName(jobName) {
+    if (jobName) {
+        const { bonusAttr } = Jobs.find((j) => j.name === jobName);
+        return Object.keys(bonusAttr)[0];
+    }
+    return null;
+}
+
+/**
+ * @param {string} backgroundName - Name of the job being retrieved
+ * @returns {string} Bonus Attribute name
+ */
+export function extractBackgroundBonusAttributeName(backgroundName) {
+    if (backgroundName) {
+        const { bonusAttr } = Backgrounds.find(
+            (b) => b.name === backgroundName
+        );
+        return Object.keys(bonusAttr)[0];
+    }
+    return null;
+}
