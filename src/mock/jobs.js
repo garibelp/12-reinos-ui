@@ -17,7 +17,7 @@ const Jobs = Object.freeze([
                 [SkillInfoEnum.NAME]: 'Gambiarra',
                 [SkillInfoEnum.LEVEL]: 1,
                 [SkillInfoEnum.COST]: 1,
-                [SkillInfoEnum.DESC]: `Um Artífice pode apanhar objetos mundanos, aprimora-los rapidamente e lança-los contra seus inimigos. Use uma ação bónus e não use movimentos nesse turno para criar uma gambiarra . O ataque é feito a distância, a habilidade usada é Raciocínio e o dano é 1d8 por gambiarra. Ao gastar 1 Ponto de Mana antes de lançar uma Gambiarra, você pode escolher um dos efeitos a seguir, a serem aplicados ao alvo apenas em caso de acerto. 
+                [SkillInfoEnum.DESC]: `Um Artífice pode apanhar objetos mundanos, aprimora-los rapidamente e lança-los contra seus inimigos. Use uma ação bónus e não use movimentos nesse turno para criar uma gambiarra . O ataque é feito a distância, a habilidade usada é Intelecto Ofensivo e o dano é 1d8 por gambiarra. Ao gastar 1 Ponto de Mana antes de lançar uma Gambiarra, você pode escolher um dos efeitos a seguir, a serem aplicados ao alvo apenas em caso de acerto. 
 
                 1 - Estilhaços, causa 1d4 de dano adicional.
                 2 - Gosmento, concede um bônus de 1d4 no acerto do próximo ataque ao alvo.
@@ -46,19 +46,19 @@ const Jobs = Object.freeze([
                 [SkillInfoEnum.NAME]: 'Magia: Charme',
                 [SkillInfoEnum.LEVEL]: 1,
                 [SkillInfoEnum.COST]: 0,
-                [SkillInfoEnum.DESC]: `Quando user essa magia, faça um Teste de Precisão contra a Vontade de um alvo indiferente a você. Se o alvo falhar, torna-se amigável a você.`,
+                [SkillInfoEnum.DESC]: `Quando user essa magia, faça um Teste de Celeridade Ofensiva contra a Astúcia Defensiva de um alvo indiferente a você. Se o alvo falhar, torna-se amigável a você.`,
             },
             {
                 [SkillInfoEnum.NAME]: 'Magia: Crítica',
                 [SkillInfoEnum.LEVEL]: 1,
                 [SkillInfoEnum.COST]: 0,
-                [SkillInfoEnum.DESC]: `Ao usar essa magia, faça um Teste de Precisão contra a Vontade de um alvo. Se o alvo falhar, sofre 1d6 de dano.`,
+                [SkillInfoEnum.DESC]: `Ao usar essa magia, faça um Teste de Celeridade Ofensiva contra a Astúcia Defensiva de um alvo. Se o alvo falhar, sofre 1d6 de dano.`,
             },
             {
                 [SkillInfoEnum.NAME]: 'Magia: Surto Criativo',
                 [SkillInfoEnum.LEVEL]: 1,
                 [SkillInfoEnum.COST]: 1,
-                [SkillInfoEnum.DESC]: `Quando usar essa magia, use outra magia como Ação Bônus. O custo de mana dela permanece o mesmo.`,
+                [SkillInfoEnum.DESC]: `Quando usar essa magia, você pode conjurar mais duas com sua Ação Bônus. O custo de mana delas permanece o mesmo.`,
             },
             {
                 [SkillInfoEnum.NAME]: 'Magia: Aclamar',
@@ -112,7 +112,7 @@ const Jobs = Object.freeze([
                 [SkillInfoEnum.NAME]: 'Retaliar',
                 [SkillInfoEnum.LEVEL]: 3,
                 [SkillInfoEnum.COST]: 1,
-                [SkillInfoEnum.DESC]: `A partir do nível 3, o Bárbaro pode gastar 2 Pontos de Mana para adicionar todo o dano que recebeu no último turno como dano bónus de seu próximo ataque.`,
+                [SkillInfoEnum.DESC]: `A partir do nível 3, o Bárbaro pode gastar 2 Pontos de Mana para adicionar todo o dano que recebeu na última rodada como dano bónus de seu próximo ataque.`,
             },
         ],
     },
@@ -130,7 +130,7 @@ const Jobs = Object.freeze([
                 [SkillInfoEnum.NAME]: 'Magia: Punir',
                 [SkillInfoEnum.LEVEL]: 1,
                 [SkillInfoEnum.COST]: 0,
-                [SkillInfoEnum.DESC]: `Faça um Teste de Augúria contra o Espírito de um alvo. Se falhar, ele recebe 1d8 de dano.`,
+                [SkillInfoEnum.DESC]: `Faça um Teste de Intelecto Ofesnvio contra a Astúcia Defensiva de um alvo. Se falhar, ele recebe 1d8 de dano.`,
             },
             {
                 [SkillInfoEnum.NAME]: 'Magia: Vigília',
@@ -172,7 +172,7 @@ const Jobs = Object.freeze([
                 [SkillInfoEnum.NAME]: 'Magia: Selvageria',
                 [SkillInfoEnum.LEVEL]: 1,
                 [SkillInfoEnum.COST]: 0,
-                [SkillInfoEnum.DESC]: `Com uma ação bônus, ativa Selvageria e pode usar Potência com as mãos nuas para causar 1d8 de dano ou aumentar em 2 sua Defesa.`,
+                [SkillInfoEnum.DESC]: `Com uma ação bônus, ativa Selvageria e pode usar sua Tenacidade Ofensiva com as mãos nuas para causar 1d8 de dano ou aumentar em 2 sua Defesa.`,
             },
             {
                 [SkillInfoEnum.NAME]: 'Magia: Bom Fruto',
@@ -208,19 +208,19 @@ const Jobs = Object.freeze([
                 [SkillInfoEnum.NAME]: 'Magia: Raio Enérgico',
                 [SkillInfoEnum.LEVEL]: 1,
                 [SkillInfoEnum.COST]: 0,
-                [SkillInfoEnum.DESC]: `Faça um Teste de Perspicácia contra a Esquiva de um alvo. Ele recebe 1d6. O Raio Enérgico pode causar dano crítico em uma rolagem 12 de acerto.`,
+                [SkillInfoEnum.DESC]: `Faça um Teste de Astúcia Ofensiva contra a Celeridade Defensiva de um alvo. Ele recebe 1d6. O Raio Enérgico pode causar dano crítico em uma rolagem 12 de acerto.`,
             },
             {
                 [SkillInfoEnum.NAME]: 'Magia: Tremor',
                 [SkillInfoEnum.LEVEL]: 1,
                 [SkillInfoEnum.COST]: 1,
-                [SkillInfoEnum.DESC]: `Treme uma área circular de 3m de raio a partir de você. Faça um Teste de Perspicácia contra a Tenacidade de todos os alvos na área. Cada criatura recebe 1d6 de dano ou metade se você falhar. O Tremor pode causar dano crítico em uma rolagem 12 de acerto.`,
+                [SkillInfoEnum.DESC]: `Treme uma área circular de 3m de raio a partir de você. Faça um Teste de Astúcia Ofensiva contra a Tenacidade Defensiva de todos os alvos na área. Cada criatura recebe 1d6 de dano ou metade se você falhar. O Tremor pode causar dano crítico em uma rolagem 12 de acerto.`,
             },
             {
                 [SkillInfoEnum.NAME]: 'Magia: Neblina',
                 [SkillInfoEnum.LEVEL]: 1,
                 [SkillInfoEnum.COST]: 1,
-                [SkillInfoEnum.DESC]: `Cria uma neblina em uma área circular de 5m de raio. Criaturas dentro da área não conseguem ver, realizam ataques com desvantagem, mas também recebem ataques com desvantagem.`,
+                [SkillInfoEnum.DESC]: `Cria uma neblina em uma área circular de 5m de raio. Criaturas dentro da área não conseguem ver, realizam ataques com 1d4 de penalidade, mas também recebem ataques com 1d4 de penalidade.`,
             },
         ],
     },
@@ -244,7 +244,7 @@ const Jobs = Object.freeze([
                 [SkillInfoEnum.NAME]: 'Arma Excepcional',
                 [SkillInfoEnum.LEVEL]: 3,
                 [SkillInfoEnum.COST]: 1,
-                [SkillInfoEnum.DESC]: `A partir do nível 3, o Guerreiro pode gastar 1 Ponto de Mana para adicionar sua Potência + seu nível ao seu dano enquanto estiver usando sua Arma Favorita.`,
+                [SkillInfoEnum.DESC]: `A partir do nível 3, o Guerreiro pode gastar 1 Ponto de Mana para adicionar sua Tenacidade Ofensiva + seu nível ao seu dano enquanto estiver usando sua Arma Favorita.`,
             },
         ],
     },
@@ -268,7 +268,7 @@ const Jobs = Object.freeze([
                 [SkillInfoEnum.NAME]: 'Astuto',
                 [SkillInfoEnum.LEVEL]: 3,
                 [SkillInfoEnum.COST]: 0,
-                [SkillInfoEnum.DESC]: `A partir do nível 3, Ladinos podem usar seu Carisma no lugar de Destreza em Testes e atacar à distância.`,
+                [SkillInfoEnum.DESC]: `A partir do nível 3, Ladinos podem usar sua Astúcia no lugar de Celeridade em Testes e para atacar à distância.`,
             },
         ],
     },
@@ -286,7 +286,7 @@ const Jobs = Object.freeze([
                 [SkillInfoEnum.NAME]: 'Magia: Projétil Mágico',
                 [SkillInfoEnum.LEVEL]: 1,
                 [SkillInfoEnum.COST]: 0,
-                [SkillInfoEnum.DESC]: `Faça um Teste de Raciocínio contra a Lucidez de um alvo para lhe disparar um projétil e, caso acerte, cause 1d6 de dano`,
+                [SkillInfoEnum.DESC]: `Faça um Teste de Intelecto Ofensivo contra a Lucidez de um alvo para lhe disparar um projétil e, caso acerte, cause 1d6 de dano`,
             },
             {
                 [SkillInfoEnum.NAME]: 'Magia: Familiar',
@@ -304,7 +304,7 @@ const Jobs = Object.freeze([
                 [SkillInfoEnum.NAME]: 'Magia: Libra',
                 [SkillInfoEnum.LEVEL]: 1,
                 [SkillInfoEnum.COST]: 1,
-                [SkillInfoEnum.DESC]: `Faça um Teste de Raciocínio contra o Espírito de um alvo. Em um sucesso, descubra uma Vulnerabilidade e uma Resistência dele. Caso não tenha nenhuma, descubra o valor de sua Defesa e Atributos Defensivos. Libra não pode ser usada mais de uma vez em um mesmo alvo.`,
+                [SkillInfoEnum.DESC]: `Faça um Teste de Intelecto Ofensivo contra a Astúcia Defensiva de um alvo. Em um sucesso, descubra uma Vulnerabilidade e uma Resistência dele. Caso não tenha nenhuma, descubra o valor de sua Defesa e Atributos Defensivos. Libra não pode ser usada mais de uma vez em um mesmo alvo.`,
             },
         ],
     },
@@ -322,7 +322,7 @@ const Jobs = Object.freeze([
                 [SkillInfoEnum.NAME]: 'Artes Marciais',
                 [SkillInfoEnum.LEVEL]: 1,
                 [SkillInfoEnum.COST]: 1,
-                [SkillInfoEnum.DESC]: `A partir do nível 1, um Monge pode realizar ataques corpo a corpo com suas mãos nuas utilizando Augúria, com dano de 1d8. Ao gastar 1 Ponto de Mana, pode declarar seu próximo ataque um sucesso automático.`,
+                [SkillInfoEnum.DESC]: `A partir do nível 1, um Monge pode realizar ataques corpo a corpo com suas mãos nuas utilizando seu Intelecto Ofensivo, com dano de 1d8. Ao gastar 1 Ponto de Mana, pode declarar seu próximo ataque um sucesso automático.`,
             },
             {
                 [SkillInfoEnum.NAME]: 'Contra-golpe',
@@ -351,7 +351,7 @@ const Jobs = Object.freeze([
                 [SkillInfoEnum.NAME]: 'Magia: Distorcer',
                 [SkillInfoEnum.LEVEL]: 1,
                 [SkillInfoEnum.COST]: 0,
-                [SkillInfoEnum.DESC]: `Faça um Teste de Vigor contra a Lucidez de um alvo. Se passar, distorce o espaço ao seu redor e lhe causa 1d8 de dano.`,
+                [SkillInfoEnum.DESC]: `Faça um Teste de Tenacidade Ofensiva contra a Lucidez de um alvo. Se passar, distorce o espaço ao seu redor e lhe causa 1d8 de dano.`,
             },
             {
                 [SkillInfoEnum.NAME]: 'Magia: Esticar Tempo',
