@@ -286,7 +286,7 @@ const Jobs = Object.freeze([
                 [SkillInfoEnum.NAME]: 'Magia: Projétil Mágico',
                 [SkillInfoEnum.LEVEL]: 1,
                 [SkillInfoEnum.COST]: 0,
-                [SkillInfoEnum.DESC]: `Faça um Teste de Intelecto Ofensivo contra a Lucidez de um alvo para lhe disparar um projétil e, caso acerte, cause 1d6 de dano`,
+                [SkillInfoEnum.DESC]: `Faça um Teste de Intelecto Ofensivo contra o Intelecto Defensivo de um alvo para lhe disparar um projétil e, caso acerte, cause 1d6 de dano`,
             },
             {
                 [SkillInfoEnum.NAME]: 'Magia: Familiar',
