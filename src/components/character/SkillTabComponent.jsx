@@ -92,7 +92,7 @@ const SkillTabComponent = () => {
     return (
         <div className="skill-mana">
             <ThunderboltFilled className="skill-mana-symbol" />
-            Mana
+            Energia
             <Progress
                 className="skill-mana-bar"
                 status="active"

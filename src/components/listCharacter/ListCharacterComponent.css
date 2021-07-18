@@ -1,0 +1,13 @@
+.list-char-table {
+    width: 800px;
+}
+
+.list-char-table-title {
+    text-align: center;
+    height: 33px;
+}
+
+.list-char-table-actions {
+    display: flex;
+    place-content: space-between;
+}

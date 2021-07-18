@@ -19,7 +19,7 @@ import {
     Tooltip,
 } from 'antd';
 import TextArea from 'antd/lib/input/TextArea';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { ReactComponent as AttributesSvg } from '../../assets/images/attributes.svg';
@@ -38,6 +38,7 @@ import Races from '../../mock/races';
 import Subclasses from '../../mock/subclasses';
 import * as charActions from '../../reducers/characterReducer';
 import {
+    calculateAttribute,
     extractBackgroundBond,
     extractJobInfo,
     extractMaxLifeAndMana,
@@ -81,6 +82,7 @@ const subclassList = (job) => {
 
 const CharTabComponent = () => {
     const {
+        id,
         currentLife,
         totalLife,
         currentMana,
@@ -97,9 +99,40 @@ const CharTabComponent = () => {
         defective,
         enhancedAttribute,
         currentBonusPoints,
+        name,
+        startLevel,
     } = useSelector((state) => state.character);
 
     const dispatch = useDispatch();
+
+    useEffect(() => {
+        if (!id) {
+            const attrObj = {};
+            Object.entries(AttributeEnum).forEach((attr) => {
+                const enhancedValue = defective ? -1 : 1;
+                attrObj[attr[1].base] = calculateAttribute(
+                    attr[1].base,
+                    background,
+                    race,
+                    job,
+                    subclass,
+                    level,
+                    enhancedAttribute === attr[0] ? enhancedValue : 0
+                );
+            });
+            dispatch(charActions.setCharacterInfoBlock(attrObj));
+        }
+    }, [
+        id,
+        background,
+        race,
+        job,
+        subclass,
+        defective,
+        enhancedAttribute,
+        level,
+        dispatch,
+    ]);
 
     // newLevel - Used to trigger change on component when job is already selected and level change
     const setJobValues = (value, newLevel = 0) => {
@@ -127,6 +160,8 @@ const CharTabComponent = () => {
         charObject.job = value;
         charObject.totalLife = life;
         charObject.totalMana = mana;
+        charObject.currentBonusPoints = 3;
+
         dispatch(charActions.setCharacterInfoBlock(charObject));
     };
 
@@ -143,17 +178,24 @@ const CharTabComponent = () => {
     };
 
     // Logic to retrieve the race skills
-    const proRaceSkill = extractRaceInfo(race, RaceInfoEnum.PRO_SKILL) || {};
-    const conRaceSkill = extractRaceInfo(race, RaceInfoEnum.CON_SKILL) || {};
-    // Attribute used to disable subclass if player is level 1
-    const disableSubclassSelect = level < 2;
+    const proRaceSkill = extractRaceInfo(race, RaceInfoEnum.PRO_SKILL);
+    const conRaceSkill = extractRaceInfo(race, RaceInfoEnum.CON_SKILL);
+    // Attribute used to disable subclass if player is level 1 or lv2 or more after save
+    const disableSubclassSelect = level < 2 || startLevel > 1;
 
     return (
         <>
             <Row>
                 <Col span={8}>
                     <FormItem label="Personagem" rules={[{ required: true }]}>
-                        <Input placeholder="Digitar nome" />
+                        <Input
+                            placeholder="Digitar nome"
+                            onChange={(v) => {
+                                dispatch(charActions.setName(v.target.value));
+                            }}
+                            disabled={!!id}
+                            value={name}
+                        />
                     </FormItem>
                 </Col>
                 <Col span={8}>
@@ -162,9 +204,10 @@ const CharTabComponent = () => {
                             placeholder="Selecionar antecedente"
                             allowClear
                             value={background}
-                            onChange={(v) =>
-                                dispatch(charActions.setBackground(v))
-                            }
+                            onChange={(v) => {
+                                dispatch(charActions.setBackground(v));
+                            }}
+                            disabled={!!id}
                         >
                             {backgroundList}
                         </Select>
@@ -255,6 +298,8 @@ const CharTabComponent = () => {
                             placeholder="Selecionar classe"
                             onChange={(value) => setJobValues(value)}
                             allowClear
+                            disabled={!!id}
+                            value={job}
                         >
                             {jobList}
                         </Select>
@@ -292,6 +337,8 @@ const CharTabComponent = () => {
                                     );
                                 }
                             }}
+                            disabled={!!id}
+                            value={race}
                         >
                             {raceList}
                         </Select>
@@ -328,17 +375,10 @@ const CharTabComponent = () => {
                                     marginRight: '5px',
                                 }}
                             />
-                            Atributos - Saldo: {currentBonusPoints}
+                            Atributos
+                            {!id ? `- Saldo: ${currentBonusPoints}` : null}
                         </Col>
-                        <AttributesDisplayComponent
-                            background={background}
-                            race={race}
-                            job={job}
-                            subclass={subclass}
-                            defective={defective}
-                            level={level}
-                            enhancedAttribute={enhancedAttribute}
-                        />
+                        <AttributesDisplayComponent />
                     </Row>
                 </Col>
                 <Col span={12}>
@@ -381,7 +421,7 @@ const CharTabComponent = () => {
                             <span className="charsheet-attr-title">
                                 <Space>
                                     <ThunderboltFilled />
-                                    Mana
+                                    Energia
                                 </Space>
                             </span>
                             <Space>
@@ -587,6 +627,7 @@ const CharTabComponent = () => {
                                                         v
                                                     )
                                                 );
+                                                setJobValues();
                                             }}
                                             placeholder="Selecionar atributo"
                                         >

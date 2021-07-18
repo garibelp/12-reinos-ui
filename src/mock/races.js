@@ -45,31 +45,31 @@ const Races = Object.freeze([
                 'Anguisas demoram para digerir seus alimentos. Após qualquer refeição, esses seres usam de toda energia de seu corpo para processar o que comeram, por isso geralmente apenas dormem. Dessa forma, enquanto estiver digerindo algo, um Aguisa tem desvantagem em todas as rolagens que fizer.',
         },
     },
-    {
-        name: 'Gigasse',
-        age:
-            'Gigasses atingem a maturidade com 150 anos, evivem em média até os 800.',
-        size: {
-            category: SizeEnum.GRD,
-            description: 'Pode variar entre 2,5m a 3m.',
-        },
-        mov: 6,
-        lang: [LanguagesEnum.COMUM, LanguagesEnum.GIGA],
-        pro: {
-            name: 'Gigantismo',
-            description:
-                'Para todos os efeitos, Gigasses são considados criaturas de tamanho Grande. Seu Valor de Atributo de Tenacidade é aumentado em 2 pontos, e o de Celeridade é reduzido em 2 pontos.',
-        },
-        con: {
-            name: 'Inadequados',
-            description:
-                'É muito difícil encontrar coisas mundanas feitas para Gigasses. Desde estabelecimentos com cadeiras que suportem seu tamanho e peso, a armas e armaduras adequadas para seu porte. A vida de um Gigasse entre outras raças pode ser um pouco complicada. Caso esteja em um ambiente inapropriado para seu tamanho, não pode usar Aptidões em nenhum tipo de rolagem.',
-        },
-        bonusAttr: {
-            [AttributeEnum.TEN.base]: 2,
-            [AttributeEnum.CEL.base]: -2,
-        },
-    },
+    // {
+    //     name: 'Gigasse',
+    //     age:
+    //         'Gigasses atingem a maturidade com 150 anos, evivem em média até os 800.',
+    //     size: {
+    //         category: SizeEnum.GRD,
+    //         description: 'Pode variar entre 2,5m a 3m.',
+    //     },
+    //     mov: 6,
+    //     lang: [LanguagesEnum.COMUM, LanguagesEnum.GIGA],
+    //     pro: {
+    //         name: 'Gigantismo',
+    //         description:
+    //             'Para todos os efeitos, Gigasses são considados criaturas de tamanho Grande. Seu Valor de Atributo de Tenacidade é aumentado em 2 pontos, e o de Celeridade é reduzido em 2 pontos.',
+    //     },
+    //     con: {
+    //         name: 'Inadequados',
+    //         description:
+    //             'É muito difícil encontrar coisas mundanas feitas para Gigasses. Desde estabelecimentos com cadeiras que suportem seu tamanho e peso, a armas e armaduras adequadas para seu porte. A vida de um Gigasse entre outras raças pode ser um pouco complicada. Caso esteja em um ambiente inapropriado para seu tamanho, não pode usar Aptidões em nenhum tipo de rolagem.',
+    //     },
+    //     bonusAttr: {
+    //         [AttributeEnum.TEN.base]: 2,
+    //         [AttributeEnum.CEL.base]: -2,
+    //     },
+    // },
     {
         name: 'Alterado',
         age: 'Raça base',

@@ -57,3 +57,7 @@
     z-index: 1;
     height: 0;
 }
+
+.disable-cursor {
+    cursor: not-allowed !important;
+}

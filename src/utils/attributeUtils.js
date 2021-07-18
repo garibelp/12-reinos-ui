@@ -1,3 +1,4 @@
+import AttributeEnum from '../enums/attributeEnum';
 import Backgrounds from '../mock/background';
 import Jobs from '../mock/jobs';
 import Races from '../mock/races';
@@ -90,7 +91,7 @@ export function extractRaceInfo(raceName, value) {
         const currentRace = Races.find((r) => r.name === raceName);
         return currentRace[value];
     }
-    return null;
+    return {};
 }
 
 /**
@@ -144,4 +145,107 @@ export function extractBackgroundBonusAttributeName(backgroundName) {
         return Object.keys(bonusAttr)[0];
     }
     return null;
+}
+
+/**
+ * @description Function that validate if all attributes are valid on Character Save flow
+ * @param {Object} characterInformation - Object containing character information
+ * @returns {Object} List containing invalid fields and payload
+ */
+export function validateCharMandatoryAttributes(characterInformation = {}) {
+    const errors = [];
+    const {
+        currentBonusPoints,
+        id,
+        background,
+        currentArmor,
+        currentLife,
+        currentMana,
+        defective,
+        enhancedAttribute,
+        job,
+        level,
+        name,
+        race,
+        subclass,
+        totalArmor,
+        totalLife,
+        totalMana,
+        aptitudeList,
+    } = characterInformation;
+
+    const commonPayload = {
+        currentArmor,
+        currentLife,
+        currentMana,
+        level,
+    };
+    const createPayload = {
+        totalArmor,
+        totalLife,
+        totalMana,
+    };
+
+    if (id) {
+        commonPayload._id = id;
+    }
+
+    if (currentBonusPoints > 0) {
+        errors.push('Necessário gastar pontos de Atributo');
+    } else {
+        createPayload[AttributeEnum.AST.base] =
+            characterInformation[AttributeEnum.AST.base];
+        createPayload[AttributeEnum.CEL.base] =
+            characterInformation[AttributeEnum.CEL.base];
+        createPayload[AttributeEnum.INT.base] =
+            characterInformation[AttributeEnum.INT.base];
+        createPayload[AttributeEnum.TEN.base] =
+            characterInformation[AttributeEnum.TEN.base];
+    }
+
+    function validateIfNotNull(logName, name, value, addToCommon = false) {
+        if (!value) {
+            errors.push(`Necessário selecionar ${logName}`);
+        } else {
+            if (addToCommon) commonPayload[name] = value;
+            else createPayload[name] = value;
+        }
+    }
+
+    validateIfNotNull('Nome', 'name', name);
+    validateIfNotNull('Antecedente', 'background', background);
+    validateIfNotNull('Classe', 'job', job);
+    validateIfNotNull('Linhagem', 'race', race);
+    if (level > 1) validateIfNotNull('Subclasse', 'subclass', subclass);
+    if (job === 'Alterado') {
+        validateIfNotNull(
+            'Atributo Aprimorado',
+            'enhancedAttribute',
+            enhancedAttribute,
+            true
+        );
+        commonPayload.defective = !!defective;
+    }
+
+    if (aptitudeList.length !== 3 || aptitudeList.indexOf(null) !== -1) {
+        errors.push('Necessário selecionar Aptidões');
+    } else {
+        commonPayload.aptitudeList = aptitudeList;
+    }
+
+    return { errors, commonPayload, createPayload };
+}
+
+/**
+ * @description Function that builds the char info retrieved from DB to the store format
+ * @param {Object} dbCharInfo - Information retrieved from DB
+ */
+export function buildLoadCharacterPayload(dbCharInfo) {
+    console.log('dbCharInfo', dbCharInfo);
+    return {
+        ...dbCharInfo,
+        __typename: null,
+        currentBonusPoints: 0,
+        startLevel: dbCharInfo.level,
+    };
 }

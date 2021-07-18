@@ -15,7 +15,7 @@ const AttributeEnum = Object.freeze({
         defense: 'Lucidez',
     },
     AST: {
-        base: 'Astúcia',
+        base: 'Astucia',
         offense: 'Perspicácia',
         defense: 'Vontade',
     },

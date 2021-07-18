@@ -1,0 +1,82 @@
+# Schema retrieved from auto-generated backend gql schema
+
+type Character {
+    Astucia: Int!
+    Celeridade: Int!
+    Intelecto: Int!
+    Tenacidade: Int!
+    _id: String!
+    aptitudeList: [String!]!
+    background: String!
+    currentArmor: Int!
+    currentLife: Int!
+    currentMana: Int!
+    defective: Boolean
+    enhancedAttribute: String
+    job: String!
+    level: Int!
+    name: String!
+    race: String!
+    subclass: String
+    totalArmor: Int!
+    totalLife: Int!
+    totalMana: Int!
+}
+
+input CreateCharacterInput {
+    Astucia: Int!
+    Celeridade: Int!
+    Intelecto: Int!
+    Tenacidade: Int!
+    aptitudeList: [String!]!
+    background: String!
+    currentArmor: Int!
+    currentLife: Int!
+    currentMana: Int!
+    defective: Boolean
+    enhancedAttribute: String
+    job: String!
+    level: Int!
+    name: String!
+    race: String!
+    subclass: String
+    totalArmor: Int!
+    totalLife: Int!
+    totalMana: Int!
+}
+
+input ListCharacterInput {
+    _id: String
+    background: String
+    job: String
+    level: Int
+    name: String
+    race: String
+    subclass: String
+}
+
+type Mutation {
+    createCharacter(payload: CreateCharacterInput!): Character!
+    deleteCharacter(_id: String!): Character!
+    updateCharacter(payload: UpdateCharacterInput!): Character!
+}
+
+type Query {
+    character(_id: String!): Character!
+    characters(filters: ListCharacterInput): [Character!]!
+}
+
+input UpdateCharacterInput {
+    _id: String!
+    aptitudeList: [String!]
+    currentArmor: Int
+    currentLife: Int
+    currentMana: Int
+    defective: Boolean
+    enhancedAttribute: String
+    level: Int
+    subclass: String
+    totalArmor: Int
+    totalLife: Int
+    totalMana: Int
+}

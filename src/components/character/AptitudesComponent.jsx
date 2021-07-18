@@ -1,8 +1,10 @@
 import { RadarChartOutlined } from '@ant-design/icons';
 import { Col, Row, Select, Space } from 'antd';
-import React, { useState } from 'react';
+import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 
 import aptitudes from '../../mock/aptitudes';
+import { setAptitudeList } from '../../reducers/characterReducer';
 import './AptitudesComponent.css';
 
 const { Option } = Select;
@@ -23,13 +25,14 @@ function buildAptitudes(list, index) {
     });
 }
 
-const AptitudesComponent = (props) => {
-    const [aptitudeList, setAptitudeList] = useState(['', '', '']);
+const AptitudesComponent = () => {
+    const { aptitudeList } = useSelector((state) => state.character);
+    const dispatch = useDispatch();
 
     function updateAptitudeList(value, index) {
         const updatedAptList = [...aptitudeList];
         updatedAptList[index] = value;
-        setAptitudeList(updatedAptList);
+        dispatch(setAptitudeList(updatedAptList));
     }
 
     return (
@@ -46,6 +49,7 @@ const AptitudesComponent = (props) => {
                 <Col span={8}>
                     <Select
                         className="aptitude-select"
+                        value={aptitudeList[0]}
                         onChange={(value) => {
                             updateAptitudeList(value, 0);
                         }}
@@ -58,6 +62,7 @@ const AptitudesComponent = (props) => {
                 <Col span={8}>
                     <Select
                         className="aptitude-select"
+                        value={aptitudeList[1]}
                         onChange={(value) => {
                             updateAptitudeList(value, 1);
                         }}
@@ -70,6 +75,7 @@ const AptitudesComponent = (props) => {
                 <Col span={8}>
                     <Select
                         className="aptitude-select"
+                        value={aptitudeList[2]}
                         onChange={(value) => {
                             updateAptitudeList(value, 2);
                         }}
