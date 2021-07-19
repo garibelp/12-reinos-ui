@@ -217,7 +217,7 @@ export function validateCharMandatoryAttributes(characterInformation = {}) {
     validateIfNotNull('Classe', 'job', job);
     validateIfNotNull('Linhagem', 'race', race);
     if (level > 1) validateIfNotNull('Subclasse', 'subclass', subclass);
-    if (job === 'Alterado') {
+    if (race === 'Alterado') {
         validateIfNotNull(
             'Atributo Aprimorado',
             'enhancedAttribute',
