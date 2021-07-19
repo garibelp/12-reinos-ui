@@ -3,6 +3,8 @@ const SkillInfoEnum = Object.freeze({
     LEVEL: 'level',
     COST: 'cost',
     DESC: 'description',
+    CONJ: 'conjuration',
+    DIST: 'distance'
 });
 
 export default SkillInfoEnum;
