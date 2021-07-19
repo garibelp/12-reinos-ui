@@ -15,7 +15,7 @@ import store from './reducers/store';
 import * as serviceWorker from './serviceWorker';
 
 const httpLink = createHttpLink({
-    uri: 'http://localhost:4000/graphql',
+    uri: process.env.REACT_APP_DATABASE_URI || 'http://localhost:4000/graphql',
 });
 
 const client = new ApolloClient({
