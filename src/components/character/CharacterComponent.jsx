@@ -164,19 +164,7 @@ const CharacterComponent = () => {
                 </Tabs>
                 <Divider style={{ margin: '10px 0' }} />
                 <Row justify="center">
-                    <Col span={12}>
-                        <Button
-                            onClick={() => {
-                                setShowDiceRoll(true);
-                            }}
-                            type="primary"
-                            danger
-                            disabled
-                        >
-                            TODO - Dice Roll
-                        </Button>
-                    </Col>
-                    <Col span={12} style={{ textAlign: 'right' }}>
+                    <Col span={24} style={{ textAlign: 'right' }}>
                         <Button
                             style={{ marginRight: '5px' }}
                             type="primary"

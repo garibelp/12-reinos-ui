@@ -3,7 +3,7 @@ import {
     LeftCircleFilled,
     ThunderboltFilled,
 } from '@ant-design/icons';
-import { Button, Collapse, Divider, Progress } from 'antd';
+import { Button, Collapse, Divider, Progress, Tag } from 'antd';
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -84,7 +84,13 @@ const SkillTabComponent = () => {
                     key={i}
                     showArrow={false}
                 >
-                    <div className="skill-description">{s.description}</div>
+                    <div className="skill-description">
+                        {s.distance && <Tag color="volcano">{s.distance}</Tag>}
+                        {s.conjuration && (
+                            <Tag color="lime">{s.conjuration}</Tag>
+                        )}
+                        {s.description}
+                    </div>
                 </Panel>
             );
         });

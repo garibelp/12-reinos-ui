@@ -1,5 +1,5 @@
-import { MinusCircleFilled, PlusCircleFilled } from '@ant-design/icons';
-import { Avatar, Card, Col, Radio, Row, Tooltip } from 'antd';
+import { MinusOutlined, PlusOutlined } from '@ant-design/icons';
+import { Card, Col, Radio, Row, Button } from 'antd';
 import Text from 'antd/es/typography/Text';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -107,12 +107,15 @@ const AttributesDisplayComponent = () => {
                     // Check if the current attribute is the enhanced race attribute
                     const isEnhancedAttr = enhancedAttribute === attr[0];
 
+                    let numberColor = 'white';
                     let diceTooltipMessage = '';
                     if (isJobBaseAttr) {
                         diceTooltipMessage += `Atributo bônus de classe ${job}`;
+                        numberColor = 'gold';
                     }
                     if (isBgBaseAttr) {
                         diceTooltipMessage += `\nAtributo de antecedente ${background}`;
+                        numberColor = '#FF7700';
                     }
                     if (isEnhancedAttr) {
                         diceTooltipMessage += '\nAtributo bônus de Alterado';
@@ -129,39 +132,28 @@ const AttributesDisplayComponent = () => {
                                     className="center-content"
                                 >
                                     <Col span={8}>
-                                        <Tooltip
-                                            placement="bottom"
-                                            title={attr[1].defense}
-                                        >
-                                            <Avatar className="attr-def-avatar">
-                                                {baseAttributeValue + 5}
-                                            </Avatar>
-                                        </Tooltip>
-                                    </Col>
-                                    <Col span={8}>
-                                        <PlusCircleFilled
-                                            className={`${
-                                                disabled ? 'disable-cursor' : ''
-                                            }`}
-                                            style={{ marginBottom: '6px' }}
+                                        <Button
                                             onClick={() => {
                                                 modifyAttribute(
                                                     attr[1].base,
-                                                    isBgBaseAttr || disabled
+                                                    isBgBaseAttr || disabled,
+                                                    true
                                                 );
                                             }}
+                                            shape="circle"
+                                            disabled={disabled}
+                                            type="primary"
+                                            icon={<MinusOutlined />}
                                         />
+                                    </Col>
+                                    <Col span={8}>
                                         <StatusIconComponent
                                             StatusIcon={Dice}
                                             currentValue={
                                                 <Text
                                                     style={{
-                                                        fontSize: '35px',
-                                                        color:
-                                                            isJobBaseAttr ||
-                                                            isBgBaseAttr
-                                                                ? 'gold'
-                                                                : 'white',
+                                                        fontSize: '45px',
+                                                        color: numberColor,
                                                     }}
                                                     strong
                                                 >
@@ -174,43 +166,28 @@ const AttributesDisplayComponent = () => {
                                                         ? defectiveColor
                                                         : 'dimgrey'
                                                 }`,
-                                                width: '45px',
+                                                width: '55px',
                                                 margin: '5px',
                                             }}
                                             customTextCss={{
-                                                top: '46%',
+                                                top: '44%',
                                             }}
                                             tooltipMessage={diceTooltipMessage}
                                         />
-                                        <MinusCircleFilled
-                                            className={`${
-                                                disabled ? 'disable-cursor' : ''
-                                            }`}
+                                    </Col>
+                                    <Col span={8}>
+                                        <Button
                                             onClick={() => {
                                                 modifyAttribute(
                                                     attr[1].base,
-                                                    isBgBaseAttr || disabled,
-                                                    true
+                                                    isBgBaseAttr || disabled
                                                 );
                                             }}
-                                        />
-                                    </Col>
-                                    <Col span={8}>
-                                        <StatusIconComponent
-                                            tooltipMessage={attr[1].offense}
-                                            StatusIcon={Dice}
-                                            customIconCss={{
-                                                fill: '#141414',
-                                                width: '32px',
-                                                margin: 0,
-                                            }}
-                                            customTextCss={{
-                                                top: '46%',
-                                                color: '#D89614',
-                                            }}
-                                            currentValue={(
-                                                baseAttributeValue - 3
-                                            ).toString()}
+                                            shape="circle"
+                                            disabled={disabled}
+                                            type="primary"
+                                            danger
+                                            icon={<PlusOutlined />}
                                         />
                                     </Col>
                                 </Row>

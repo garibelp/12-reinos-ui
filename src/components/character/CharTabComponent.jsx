@@ -17,9 +17,11 @@ import {
     Space,
     Switch,
     Tooltip,
+    Button,
+    message,
 } from 'antd';
 import TextArea from 'antd/lib/input/TextArea';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { ReactComponent as AttributesSvg } from '../../assets/images/attributes.svg';
@@ -102,6 +104,14 @@ const CharTabComponent = () => {
         name,
         startLevel,
     } = useSelector((state) => state.character);
+
+    const [red, setRed] = useState(true);
+    useEffect(() => {
+        const intervalID = setTimeout(() => {
+            setRed((red) => !red);
+        }, 300);
+        return () => clearInterval(intervalID);
+    });
 
     const dispatch = useDispatch();
 
@@ -379,6 +389,35 @@ const CharTabComponent = () => {
                             {!id ? `- Saldo: ${currentBonusPoints}` : null}
                         </Col>
                         <AttributesDisplayComponent />
+                        <Col
+                            style={{
+                                display: 'flex',
+                                alignItems: 'end',
+                                justifyContent: 'center',
+                                height: '45px',
+                            }}
+                            span={24}
+                        >
+                            <Button
+                                type="primary"
+                                style={{
+                                    width: '40%',
+                                    height: '80%',
+                                    marginRight: '7px',
+                                    background: 'black',
+                                    color: red ? 'red' : 'yellow',
+                                    fontSize: 'large',
+                                    fontWeight: 'bold',
+                                }}
+                                onClick={() => {
+                                    message.warn(
+                                        'Guentai que ainda não funciona'
+                                    );
+                                }}
+                            >
+                                ATACAR!!!
+                            </Button>
+                        </Col>
                     </Row>
                 </Col>
                 <Col span={12}>
