@@ -40,7 +40,7 @@ const Jobs = Object.freeze([
         [JobInfoEnum.ARMOR]: 1,
         [JobInfoEnum.HIT_DICE]: 'd8',
         [JobInfoEnum.BONUS_ATTR]: {
-            [attributeEnum.CEL.base]: 2,
+            [attributeEnum.AST.base]: 2,
         },
         [JobInfoEnum.SKILLS]: [
             {
@@ -123,7 +123,7 @@ const Jobs = Object.freeze([
         [JobInfoEnum.ARMOR]: 1,
         [JobInfoEnum.HIT_DICE]: 'd8',
         [JobInfoEnum.BONUS_ATTR]: {
-            [attributeEnum.INT.base]: 2,
+            [attributeEnum.AST.base]: 2,
         },
         [JobInfoEnum.SKILLS]: [
             {
@@ -252,7 +252,7 @@ const Jobs = Object.freeze([
         [JobInfoEnum.ARMOR]: 1,
         [JobInfoEnum.HIT_DICE]: 'd10',
         [JobInfoEnum.BONUS_ATTR]: {
-            [attributeEnum.AST.base]: 2,
+            [attributeEnum.CEL.base]: 2,
         },
         [JobInfoEnum.SKILLS]: [
             {
@@ -310,7 +310,7 @@ const Jobs = Object.freeze([
         [JobInfoEnum.ARMOR]: 1,
         [JobInfoEnum.HIT_DICE]: 'd10',
         [JobInfoEnum.BONUS_ATTR]: {
-            [attributeEnum.INT.base]: 2,
+            [attributeEnum.CEL.base]: 2,
         },
         [JobInfoEnum.SKILLS]: [
             {
@@ -333,7 +333,7 @@ const Jobs = Object.freeze([
         [JobInfoEnum.ARMOR]: 3,
         [JobInfoEnum.HIT_DICE]: 'd6',
         [JobInfoEnum.BONUS_ATTR]: {
-            [attributeEnum.TEN.base]: 2,
+            [attributeEnum.INT.base]: 2,
         },
         [JobInfoEnum.SKILLS]: [
             {
