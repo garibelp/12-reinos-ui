@@ -25,6 +25,12 @@ const Jobs = Object.freeze([
                 4 - Mina, é presa ao chão e ativada ao toque automaticamente. Não há necessidade de acerto.`,
             },
             {
+                [SkillInfoEnum.NAME]: 'Entendimento Mecânico',
+                [SkillInfoEnum.LEVEL]: 1,
+                [SkillInfoEnum.COST]: 1,
+                [SkillInfoEnum.DESC]: `Concentrando-se brevemente, um Artífice entende os detalhes dos mais complexos mecanismos e elixires. Com uma Ação, ele pode basicamente enxergar através de paredes e objetos não-metálicos, observando engrenagens, escapamentos de vapor e detalhes de mecanismos em uma distância de até 5m. Ao observar mecanismos, o Artífice deve ser bem sucedido em um teste de Intelecto com um bônus de -2 para imediatamente entender o seu propósito. Caso um outro Artífice ou Ladino tenha fabricado o mecanismo a ser observado, o Artífice observador deverá superar seu oponente em um teste de Intelecto, ou nem será capaz de enxergar as peças.`,
+            },
+            {
                 [SkillInfoEnum.NAME]: 'Assistente',
                 [SkillInfoEnum.LEVEL]: 3,
                 [SkillInfoEnum.COST]: 0,
@@ -85,6 +91,12 @@ const Jobs = Object.freeze([
                 [SkillInfoEnum.DESC]: `Quando o Atirador acertar um ataque em um alvo, ele pode gastar 1 Mana e ativar seu Disparo Duplo para rolar um novo ataque usando sua Ação Bônus. `,
             },
             {
+                [SkillInfoEnum.NAME]: 'Tiro de aviso',
+                [SkillInfoEnum.LEVEL]: 1,
+                [SkillInfoEnum.COST]: 1,
+                [SkillInfoEnum.DESC]: `Enquanto estiver em posse de sua(s) arma(s), o Atirador tem uma clara vantagem em suas mãos. Gastando uma Ação, o Atirador é capaz de demonstrar o tamanho de seu poder de fogo, intimidando qualquer criatura que não tenha uma arma em mãos num raio de 5m. Caso a(s) criatura(s) em questão tenha armas naturalmente (como garras, por exemplo), ela não é afetada por essa habilidade. A partir daí, o Atirador pode tanto iniciar uma batalha com vantagem, agindo primeiro na ordem de iniciativa, quanto recebe um bônus de 1d4 para intimidar seus inimigos a fugir do combate.`,
+            },
+            {
                 [SkillInfoEnum.NAME]: 'Descarregar',
                 [SkillInfoEnum.LEVEL]: 3,
                 [SkillInfoEnum.COST]: 1,
@@ -107,6 +119,12 @@ const Jobs = Object.freeze([
                 [SkillInfoEnum.LEVEL]: 1,
                 [SkillInfoEnum.COST]: 1,
                 [SkillInfoEnum.DESC]: `Com uma ação bônus, gaste 1 Mana e entre em Fúria e receba apenas metade de toda fonte de dano físico, que são de ataques feitos contra sua Defesa. Sua Fúria acaba caso você não cause ou receba dano em uma rodada, ou chegue a 0 Pontos de Vida. `,
+            },
+            {
+                [SkillInfoEnum.NAME]: 'Algo de errado não está certo.',
+                [SkillInfoEnum.LEVEL]: 1,
+                [SkillInfoEnum.COST]: 1,
+                [SkillInfoEnum.DESC]: `Embora seja eficiente em se jogar, furioso, para o perigo, o Bárbaro é também capaz de perceber o perigo, quase como um sexto sentido. Com uma Ação, o Bárbaro pode sentir todas as criaturas, humanoides ou não, que têm intenções imediatamente hostis contra si ou contra seu grupo num raio de 5m.`,
             },
             {
                 [SkillInfoEnum.NAME]: 'Retaliar',
@@ -238,6 +256,12 @@ const Jobs = Object.freeze([
                 [SkillInfoEnum.DESC]: `Defina um nome para uma arma específica, acostume-se com seu peso, balanço e precisão. Ao gastar 1 Ponto de Mana, você pode rolar um dado de dano adicional em uma ataque feito com sucesso. O uso é declarado antes do ataque e caso esse falhe, o efeito é perdido. Para trocar sua Arma Favorita, nomeie a nova e passe um Repouso treinando com ela.`,
             },
             {
+                [SkillInfoEnum.NAME]: 'Competitivo',
+                [SkillInfoEnum.LEVEL]: 1,
+                [SkillInfoEnum.COST]: 1,
+                [SkillInfoEnum.DESC]: `O Guerreiro é uma máquina de vencer, não só dentro das batalhas! Em situações de competição - uma partida de poker, uma corrida ou até uma queda de braço - em que uma aposta estiver em jogo, o Guerreiro pode gastar uma Ação para ganhar um bônus automático de 1d4 em todas as suas rolagens. Caso a competição valha a vida de alguém, esse bônus sobe para 1d6. Para que usufrua dessa habilidade, o Guerreiro deve receber uma confirmação clara da(s) outra(s) parte(s) da competição de que a aposta está feita.`,
+            },
+            {
                 [SkillInfoEnum.NAME]: 'Arma Excepcional',
                 [SkillInfoEnum.LEVEL]: 3,
                 [SkillInfoEnum.COST]: 1,
@@ -260,6 +284,12 @@ const Jobs = Object.freeze([
                 [SkillInfoEnum.LEVEL]: 1,
                 [SkillInfoEnum.COST]: 1,
                 [SkillInfoEnum.DESC]: `A partir do nível 1, um ladino pode gastar 1 Ponto de Mana para se movimentar usando sua Ação Bônus. Ele ainda pode se movimentar normalmente, ou seja, terá até o dobro de seu deslocamento nesse turno. Mover-se com Agilidade não provoca Ataques de Oportunidade.`,
+            },
+            {
+                [SkillInfoEnum.NAME]: 'Zé Ninguém',
+                [SkillInfoEnum.LEVEL]: 1,
+                [SkillInfoEnum.COST]: 1,
+                [SkillInfoEnum.DESC]: `O Ladino tem um talento especial para ir e vir despercebido. Desde que tome um pouco mais de cuidado, o Ladino é capaz de gastar uma Ação para tornar seu rosto quase completamente imemorável. Em um lugar relacionado a seu Antecedente, ele é capaz de estender esse efeito a até 4 pessoas. Caso cause algum tipo de alarde, o Ladino perde esse efeito imediatamente, atraindo a atenção de todos ao redor. Apenas tome cuidado: Bárbaros ainda podem perceber que Algo de Errado Não Está Certo!`,
             },
             {
                 [SkillInfoEnum.NAME]: 'Astuto',
@@ -320,6 +350,12 @@ const Jobs = Object.freeze([
                 [SkillInfoEnum.DESC]: ` A partir do nível 1, um Monge pode realizar ataques corpo a corpo com suas mãos nuas utilizando Celeridade, com dano de 1d10. Ao gastar 1 Ponto de Mana, pode declarar seu próximo ataque um sucesso automático.`,
             },
             {
+                [SkillInfoEnum.NAME]: 'Aura de Tranquilidade',
+                [SkillInfoEnum.LEVEL]: 1,
+                [SkillInfoEnum.COST]: 1,
+                [SkillInfoEnum.DESC]: `A simples presença do monge é um sinal de paz. Com um rápido momento de meditação, o monge pode gastar uma Ação para emanar uma energia extremamente pacífica e inofensiva. Desde que o monge não ataque (ou tenha atacado no passado) nenhuma criatura num raio de 5m, social ou fisicamente, ele também não sofrerá qualquer agressão física ou social.`,
+            },
+            {
                 [SkillInfoEnum.NAME]: 'Contra-golpe',
                 [SkillInfoEnum.LEVEL]: 3,
                 [SkillInfoEnum.COST]: 1,
@@ -330,6 +366,7 @@ const Jobs = Object.freeze([
     {
         [JobInfoEnum.NAME]: 'Nexus',
         [JobInfoEnum.LIFE]: 6,
+        [JobInfoEnum.MANA]: 3,
         [JobInfoEnum.ARMOR]: 3,
         [JobInfoEnum.HIT_DICE]: 'd6',
         [JobInfoEnum.BONUS_ATTR]: {
