@@ -344,10 +344,10 @@ const Jobs = Object.freeze([
         },
         [JobInfoEnum.SKILLS]: [
             {
-                [SkillInfoEnum.NAME]: 'Artes Marciais',
+                [SkillInfoEnum.NAME]: 'Defesa Serena',
                 [SkillInfoEnum.LEVEL]: 1,
                 [SkillInfoEnum.COST]: 1,
-                [SkillInfoEnum.DESC]: ` A partir do nível 1, um Monge pode realizar ataques corpo a corpo com suas mãos nuas utilizando Celeridade, com dano de 1d10. Ao gastar 1 Ponto de Mana, pode declarar seu próximo ataque um sucesso automático.`,
+                [SkillInfoEnum.DESC]: `A partir do nível 1, quando receber um ataque que o acertar, Monge pode gastar 1 Ponto de Mana como reação para se desviar serenamente e tratar o ataque como uma falha.`,
             },
             {
                 [SkillInfoEnum.NAME]: 'Aura de Tranquilidade',
