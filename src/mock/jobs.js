@@ -217,7 +217,7 @@ const Jobs = Object.freeze([
                 [SkillInfoEnum.NAME]: 'Magia: Ilusão',
                 [SkillInfoEnum.LEVEL]: 1,
                 [SkillInfoEnum.COST]: 0,
-                [SkillInfoEnum.DESC]: `Cria um efeito sensorial inofensivo.`,
+                [SkillInfoEnum.DESC]: `Cria um efeito sensorial inofensivo. Escolha entre um dos sentidos: audição, olfato e visão. A Ilusão não pode ter volume maior que o corpo do conjurador.`,
                 [SkillInfoEnum.CONJ]: 'Ação',
                 [SkillInfoEnum.DIST]: '9m',
             },
