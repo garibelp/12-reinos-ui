@@ -1,10 +1,12 @@
-# Schema retrieved from auto-generated backend gql schema
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
 
 type Character {
-    Astucia: Int!
-    Celeridade: Int!
-    Intelecto: Int!
-    Tenacidade: Int!
+    AST: [Int!]!
+    CEL: [Int!]!
+    INT: [Int!]!
+    TEN: [Int!]!
     _id: String!
     aptitudeList: [String!]!
     background: String!
@@ -24,10 +26,10 @@ type Character {
 }
 
 input CreateCharacterInput {
-    Astucia: Int!
-    Celeridade: Int!
-    Intelecto: Int!
-    Tenacidade: Int!
+    AST: [Int!]!
+    CEL: [Int!]!
+    INT: [Int!]!
+    TEN: [Int!]!
     aptitudeList: [String!]!
     background: String!
     currentArmor: Int!
@@ -67,6 +69,10 @@ type Query {
 }
 
 input UpdateCharacterInput {
+    AST: [Int!]
+    CEL: [Int!]
+    INT: [Int!]
+    TEN: [Int!]
     _id: String!
     aptitudeList: [String!]
     currentArmor: Int

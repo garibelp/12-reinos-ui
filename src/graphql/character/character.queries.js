@@ -3,10 +3,10 @@ import { gql } from '@apollo/client';
 export const CHARACTER = gql`
     query character($id: String!) {
         character(_id: $id) {
-            Astucia
-            Celeridade
-            Intelecto
-            Tenacidade
+            AST
+            CEL
+            INT
+            TEN
             background
             currentArmor
             currentLife

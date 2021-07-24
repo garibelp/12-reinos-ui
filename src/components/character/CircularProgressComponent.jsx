@@ -1,18 +1,31 @@
 import { MinusCircleFilled, PlusCircleFilled } from '@ant-design/icons';
-import { Progress } from 'antd';
+import { Progress, Tooltip } from 'antd';
 import PropTypes from 'prop-types';
 import React from 'react';
 
 import './CircularProgressComponent.css';
 
 const CircularProgressComponent = (props) => {
-    const { minusClick, plusClick, currentPoints, maxPoints } = props;
+    const {
+        minusClick,
+        plusClick,
+        currentPoints,
+        maxPoints,
+        disabled,
+        minusIconTooltip,
+        plusIconTooltip,
+    } = props;
+
     return (
         <div className="circular-progress">
-            <MinusCircleFilled
-                className="change-status-button"
-                onClick={minusClick}
-            />
+            <Tooltip title={minusIconTooltip} placement="bottom">
+                <MinusCircleFilled
+                    className="change-status-button"
+                    onClick={() => {
+                        if (!disabled) minusClick();
+                    }}
+                />
+            </Tooltip>
             <Progress
                 type="dashboard"
                 strokeColor={{
@@ -24,10 +37,14 @@ const CircularProgressComponent = (props) => {
                 percent={maxPoints > 0 ? (currentPoints / maxPoints) * 100 : 0}
                 format={() => `${currentPoints || 0}/${maxPoints || 0}`}
             />
-            <PlusCircleFilled
-                className="change-status-button"
-                onClick={plusClick}
-            />
+            <Tooltip title={plusIconTooltip} placement="bottom">
+                <PlusCircleFilled
+                    className="change-status-button"
+                    onClick={() => {
+                        if (!disabled) plusClick();
+                    }}
+                />
+            </Tooltip>
         </div>
     );
 };
@@ -37,6 +54,9 @@ CircularProgressComponent.propTypes = {
     plusClick: PropTypes.func,
     currentPoints: PropTypes.number,
     maxPoints: PropTypes.number,
+    disabled: PropTypes.bool,
+    minusIconTooltip: PropTypes.string,
+    plusIconTooltip: PropTypes.string,
 };
 
 CircularProgressComponent.defaultProps = {
@@ -44,6 +64,9 @@ CircularProgressComponent.defaultProps = {
     plusClick: () => {},
     currentPoints: 0,
     maxPoints: 0,
+    disabled: false,
+    minusIconTooltip: null,
+    plusIconTooltip: null,
 };
 
 export default CircularProgressComponent;

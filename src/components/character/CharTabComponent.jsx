@@ -40,11 +40,11 @@ import Races from '../../mock/races';
 import Subclasses from '../../mock/subclasses';
 import * as charActions from '../../reducers/characterReducer';
 import {
-    calculateAttribute,
-    extractBackgroundBond,
+    extractBackgroundInfo,
     extractJobInfo,
-    extractMaxLifeAndMana,
     extractRaceInfo,
+    extractSubclassInfo,
+    extractMaxLifeAndMana,
 } from '../../utils/attributeUtils';
 import AptitudesComponent from './AptitudesComponent';
 import AttributesDisplayComponent from './AttributesDisplayComponent';
@@ -104,76 +104,31 @@ const CharTabComponent = () => {
         name,
         startLevel,
     } = useSelector((state) => state.character);
-
-    const [red, setRed] = useState(true);
-    useEffect(() => {
-        const intervalID = setTimeout(() => {
-            setRed((red) => !red);
-        }, 300);
-        return () => clearInterval(intervalID);
-    });
-
     const dispatch = useDispatch();
 
-    useEffect(() => {
-        if (!id) {
-            const attrObj = {};
-            Object.entries(AttributeEnum).forEach((attr) => {
-                const enhancedValue = defective ? -1 : 1;
-                attrObj[attr[1].base] = calculateAttribute(
-                    attr[1].base,
-                    background,
-                    race,
-                    job,
-                    subclass,
-                    level,
-                    enhancedAttribute === attr[0] ? enhancedValue : 0
-                );
-            });
-            dispatch(charActions.setCharacterInfoBlock(attrObj));
+    const editionFlow = !!id;
+
+    function updateCharStatuses(jobName, currentLevel) {
+        if (jobName) {
+            const charObject = {};
+
+            const { life, mana } = extractMaxLifeAndMana(jobName, currentLevel);
+            const classArmor = extractJobInfo(jobName, JobInfoEnum.ARMOR);
+
+            if (!editionFlow) {
+                // On creation flow, reset those values
+                charObject.currentLife = life;
+                charObject.currentMana = mana;
+                charObject.currentArmor = classArmor;
+                charObject.heroPoints = currentLevel;
+            }
+            charObject.totalArmor = classArmor;
+            charObject.totalLife = life;
+            charObject.totalMana = mana;
+
+            dispatch(charActions.setCharacterInfoBlock(charObject));
         }
-    }, [
-        id,
-        background,
-        race,
-        job,
-        subclass,
-        defective,
-        enhancedAttribute,
-        level,
-        dispatch,
-    ]);
-
-    // newLevel - Used to trigger change on component when job is already selected and level change
-    const setJobValues = (value, newLevel = 0) => {
-        const charObject = {};
-
-        if (newLevel) {
-            charObject.level = newLevel;
-        }
-        const levelToUse = newLevel || level;
-
-        if (levelToUse < 2 || value !== job) {
-            charObject.subclass = null;
-        }
-
-        const { life, mana } = extractMaxLifeAndMana(value, levelToUse);
-
-        if (newLevel < level) {
-            charObject.currentLife = life;
-            charObject.currentMana = mana;
-        }
-
-        const classArmor = extractJobInfo(value, JobInfoEnum.ARMOR);
-        charObject.currentArmor = classArmor;
-        charObject.totalArmor = classArmor;
-        charObject.job = value;
-        charObject.totalLife = life;
-        charObject.totalMana = mana;
-        charObject.currentBonusPoints = 3;
-
-        dispatch(charActions.setCharacterInfoBlock(charObject));
-    };
+    }
 
     const increaseAttribute = (current, total, callbackFunc) => {
         if (current < total) {
@@ -190,8 +145,10 @@ const CharTabComponent = () => {
     // Logic to retrieve the race skills
     const proRaceSkill = extractRaceInfo(race, RaceInfoEnum.PRO_SKILL);
     const conRaceSkill = extractRaceInfo(race, RaceInfoEnum.CON_SKILL);
-    // Attribute used to disable subclass if player is level 1 or lv2 or more after save
-    const disableSubclassSelect = level < 2 || startLevel > 1;
+
+    const attrChangeTooltip = 'Desabilitado durante criação de personagem.';
+
+    const disableSubclass = startLevel > 1 || level === 1;
 
     return (
         <>
@@ -201,6 +158,7 @@ const CharTabComponent = () => {
                         <Input
                             placeholder="Digitar nome"
                             onChange={(v) => {
+                                // TODO
                                 dispatch(charActions.setName(v.target.value));
                             }}
                             disabled={!!id}
@@ -212,10 +170,18 @@ const CharTabComponent = () => {
                     <FormItem label="Antecedente" rules={[{ required: true }]}>
                         <Select
                             placeholder="Selecionar antecedente"
-                            allowClear
                             value={background}
                             onChange={(v) => {
-                                dispatch(charActions.setBackground(v));
+                                // TODO
+                                dispatch(
+                                    charActions.setBackground({
+                                        name: v,
+                                        bonus: extractBackgroundInfo(
+                                            v,
+                                            'bonusAttr'
+                                        ),
+                                    })
+                                );
                             }}
                             disabled={!!id}
                         >
@@ -228,7 +194,7 @@ const CharTabComponent = () => {
                         <Col span={16} style={{ textAlign: 'right' }}>
                             Nível :
                             <InputNumber
-                                min={1}
+                                min={startLevel}
                                 max={3}
                                 value={level}
                                 style={{
@@ -236,7 +202,8 @@ const CharTabComponent = () => {
                                     width: '80px',
                                 }}
                                 onChange={(levelValue) => {
-                                    setJobValues(job, levelValue);
+                                    dispatch(charActions.setLevel(levelValue));
+                                    updateCharStatuses(job, levelValue);
                                 }}
                             />
                         </Col>
@@ -306,8 +273,18 @@ const CharTabComponent = () => {
                     <FormItem label="Classe" rules={[{ required: true }]}>
                         <Select
                             placeholder="Selecionar classe"
-                            onChange={(value) => setJobValues(value)}
-                            allowClear
+                            onChange={(value) => {
+                                dispatch(
+                                    charActions.setJob({
+                                        name: value,
+                                        bonus: extractJobInfo(
+                                            value,
+                                            'bonusAttr'
+                                        ),
+                                    })
+                                );
+                                updateCharStatuses(value, level);
+                            }}
                             disabled={!!id}
                             value={job}
                         >
@@ -316,18 +293,22 @@ const CharTabComponent = () => {
                     </FormItem>
                 </Col>
                 <Col span={8}>
-                    <FormItem
-                        label="Subclasse"
-                        rules={[{ required: !disableSubclassSelect }]}
-                    >
+                    <FormItem label="Subclasse">
                         <Select
                             placeholder="Selecionar subclasse"
                             value={subclass}
-                            onChange={(v) => {
-                                dispatch(charActions.setSubclass(v));
+                            onChange={(value) => {
+                                dispatch(
+                                    charActions.setSubclass({
+                                        name: value,
+                                        bonus: extractSubclassInfo(
+                                            value,
+                                            'bonusAttr'
+                                        ),
+                                    })
+                                );
                             }}
-                            allowClear
-                            disabled={disableSubclassSelect}
+                            disabled={disableSubclass}
                         >
                             {subclassList(job)}
                         </Select>
@@ -337,15 +318,16 @@ const CharTabComponent = () => {
                     <FormItem label="Linhagem" rules={[{ required: true }]}>
                         <Select
                             placeholder="Selecionar linhagem"
-                            allowClear
-                            onChange={(v) => {
-                                dispatch(charActions.setRace(v));
-                                if (v !== 'Alterado') {
-                                    dispatch(charActions.setDefective(false));
-                                    dispatch(
-                                        charActions.setEnhancedAttribute(null)
-                                    );
-                                }
+                            onChange={(value) => {
+                                dispatch(
+                                    charActions.setRace({
+                                        name: value,
+                                        bonus: extractRaceInfo(
+                                            value,
+                                            'bonusAttr'
+                                        ),
+                                    })
+                                );
                             }}
                             disabled={!!id}
                             value={race}
@@ -405,7 +387,7 @@ const CharTabComponent = () => {
                                     height: '80%',
                                     marginRight: '7px',
                                     background: 'black',
-                                    color: red ? 'red' : 'yellow',
+                                    color: 'yellow',
                                     fontSize: 'large',
                                     fontWeight: 'bold',
                                 }}
@@ -452,7 +434,9 @@ const CharTabComponent = () => {
                                     }
                                     currentPoints={currentLife}
                                     maxPoints={totalLife}
-                                    displayTest
+                                    disabled={!editionFlow}
+                                    minusIconTooltip={attrChangeTooltip}
+                                    plusIconTooltip={attrChangeTooltip}
                                 />
                             </Space>
                         </Col>
@@ -486,6 +470,9 @@ const CharTabComponent = () => {
                                     }
                                     currentPoints={currentMana}
                                     maxPoints={totalMana}
+                                    disabled={!editionFlow}
+                                    minusIconTooltip={attrChangeTooltip}
+                                    plusIconTooltip={attrChangeTooltip}
                                 />
                             </Space>
                         </Col>
@@ -517,6 +504,9 @@ const CharTabComponent = () => {
                                     }
                                     currentPoints={heroPoints}
                                     maxPoints={level}
+                                    disabled={!editionFlow}
+                                    minusIconTooltip={attrChangeTooltip}
+                                    plusIconTooltip={attrChangeTooltip}
                                 />
                             </Space>
                         </Col>
@@ -563,6 +553,9 @@ const CharTabComponent = () => {
                                     }
                                     currentPoints={currentArmor}
                                     maxPoints={totalArmor}
+                                    disabled={!editionFlow}
+                                    minusIconTooltip={attrChangeTooltip}
+                                    plusIconTooltip={attrChangeTooltip}
                                 />
                             </Space>
                         </Col>
@@ -666,7 +659,6 @@ const CharTabComponent = () => {
                                                         v
                                                     )
                                                 );
-                                                setJobValues();
                                             }}
                                             placeholder="Selecionar atributo"
                                         >
@@ -711,7 +703,10 @@ const CharTabComponent = () => {
                                         bordered={false}
                                         className="charsheet-bond-info-card charsheet-internal-card"
                                     >
-                                        {extractBackgroundBond(background)}
+                                        {extractBackgroundInfo(
+                                            background,
+                                            'bond'
+                                        )}
                                     </Card>
                                 </Col>
                                 <Col span={18}>

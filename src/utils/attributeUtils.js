@@ -5,52 +5,6 @@ import Races from '../mock/races';
 import Subclasses from '../mock/subclasses';
 
 /**
- * @description Function that calculates the attribute value of a char based on info sent
- * @param {string} attribute - Attribute being calculated
- * @param {string} background - Character background
- * @param {string} race - Character race
- * @param {string} job - Character class
- * @param {string} subclass - Character subclass
- * @param {number} level - Character level
- * @param {number} enhancedBonus - Enhanced class bonus
- * @returns {number} value of the attribute
- */
-export function calculateAttribute(
-    attribute,
-    background,
-    race,
-    job,
-    subclass,
-    level,
-    enhancedBonus = 0
-) {
-    let attrValue = 3 + enhancedBonus;
-
-    const extractBonusAttr = (name, array) => {
-        const currentVal = array.find((r) => r.name === name);
-        const { bonusAttr } = currentVal;
-        if (bonusAttr && bonusAttr[attribute]) {
-            return bonusAttr[attribute];
-        }
-        return 0;
-    };
-
-    if (background) {
-        attrValue += extractBonusAttr(background, Backgrounds);
-    }
-    if (race) {
-        attrValue += extractBonusAttr(race, Races);
-    }
-    if (job) {
-        attrValue += extractBonusAttr(job, Jobs);
-    }
-    if (subclass) {
-        attrValue += extractBonusAttr(subclass, Subclasses);
-    }
-    return attrValue;
-}
-
-/**
  * @description Function that retrieves life and mana of a class using player level
  * @param {string} jobName - Name of job being used
  * @param {number} currentLevel - Character level
@@ -99,10 +53,12 @@ export function extractRaceInfo(raceName, value) {
  * @param {string} backgroundName - Name of the background of character
  * @returns {string} Bond of the background
  */
-export function extractBackgroundBond(backgroundName) {
-    if (backgroundName) {
-        const currentBg = Backgrounds.find((b) => b.name === backgroundName);
-        return currentBg.bond;
+export function extractBackgroundInfo(backgroundName, value) {
+    if (backgroundName && value) {
+        const currentSubclass = Backgrounds.find(
+            (b) => b.name === backgroundName
+        );
+        return currentSubclass[value];
     }
     return null;
 }
@@ -117,32 +73,6 @@ export function extractSubclassInfo(subclassName, value) {
     if (subclassName && value) {
         const currentSubclass = Subclasses.find((j) => j.name === subclassName);
         return currentSubclass[value];
-    }
-    return null;
-}
-
-/**
- * @param {string} jobName - Name of the job being retrieved
- * @returns {string} Bonus Attribute name
- */
-export function extractJobBonusAttributeName(jobName) {
-    if (jobName) {
-        const { bonusAttr } = Jobs.find((j) => j.name === jobName);
-        return Object.keys(bonusAttr)[0];
-    }
-    return null;
-}
-
-/**
- * @param {string} backgroundName - Name of the job being retrieved
- * @returns {string} Bonus Attribute name
- */
-export function extractBackgroundBonusAttributeName(backgroundName) {
-    if (backgroundName) {
-        const { bonusAttr } = Backgrounds.find(
-            (b) => b.name === backgroundName
-        );
-        return Object.keys(bonusAttr)[0];
     }
     return null;
 }
@@ -193,14 +123,18 @@ export function validateCharMandatoryAttributes(characterInformation = {}) {
     if (currentBonusPoints > 0) {
         errors.push('Necessário gastar pontos de Atributo');
     } else {
-        createPayload[AttributeEnum.AST.base] =
-            characterInformation[AttributeEnum.AST.base];
-        createPayload[AttributeEnum.CEL.base] =
-            characterInformation[AttributeEnum.CEL.base];
-        createPayload[AttributeEnum.INT.base] =
-            characterInformation[AttributeEnum.INT.base];
-        createPayload[AttributeEnum.TEN.base] =
-            characterInformation[AttributeEnum.TEN.base];
+        createPayload[AttributeEnum.AST.init] = attributesObjToArray(
+            characterInformation[AttributeEnum.AST.init]
+        );
+        createPayload[AttributeEnum.CEL.init] = attributesObjToArray(
+            characterInformation[AttributeEnum.CEL.init]
+        );
+        createPayload[AttributeEnum.INT.init] = attributesObjToArray(
+            characterInformation[AttributeEnum.INT.init]
+        );
+        createPayload[AttributeEnum.TEN.init] = attributesObjToArray(
+            characterInformation[AttributeEnum.TEN.init]
+        );
     }
 
     function validateIfNotNull(logName, name, value, addToCommon = false) {
@@ -241,11 +175,51 @@ export function validateCharMandatoryAttributes(characterInformation = {}) {
  * @param {Object} dbCharInfo - Information retrieved from DB
  */
 export function buildLoadCharacterPayload(dbCharInfo) {
-    console.log('dbCharInfo', dbCharInfo);
-    return {
+    const charInfo = {
         ...dbCharInfo,
-        __typename: null,
         currentBonusPoints: 0,
+        [AttributeEnum.AST.init]: attributesArrayToObj(
+            dbCharInfo[AttributeEnum.AST.init]
+        ),
+        [AttributeEnum.CEL.init]: attributesArrayToObj(
+            dbCharInfo[AttributeEnum.CEL.init]
+        ),
+        [AttributeEnum.INT.init]: attributesArrayToObj(
+            dbCharInfo[AttributeEnum.INT.init]
+        ),
+        [AttributeEnum.TEN.init]: attributesArrayToObj(
+            dbCharInfo[AttributeEnum.TEN.init]
+        ),
         startLevel: dbCharInfo.level,
     };
+    delete charInfo.__typename;
+
+    return charInfo;
+}
+
+export function attributesObjToArray(attrObj = {}) {
+    const arr = [];
+
+    arr.push(attrObj.job);
+    arr.push(attrObj.background);
+    arr.push(attrObj.subclass);
+    arr.push(attrObj.race);
+    arr.push(attrObj.bonus);
+
+    return arr;
+}
+
+export function attributesArrayToObj(attrArr = []) {
+    if (attrArr.length === 5) {
+        const attrObj = { base: 3 };
+
+        attrObj.job = attrArr[0];
+        attrObj.background = attrArr[1];
+        attrObj.subclass = attrArr[2];
+        attrObj.race = attrArr[3];
+        attrObj.bonus = attrArr[4];
+
+        return attrObj;
+    }
+    return null;
 }

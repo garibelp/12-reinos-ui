@@ -3,7 +3,7 @@ import {
     LeftCircleFilled,
     ThunderboltFilled,
 } from '@ant-design/icons';
-import { Button, Collapse, Divider, Progress, Tag } from 'antd';
+import { Button, Collapse, Divider, Progress, Tag, Tooltip } from 'antd';
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -20,9 +20,10 @@ const { Panel } = Collapse;
 
 const SkillTabComponent = () => {
     const [skillOpened, setSkillOpened] = useState(null);
-    const { currentMana, totalMana, job, level, subclass } = useSelector(
+    const { currentMana, totalMana, job, level, subclass, id } = useSelector(
         (state) => state.character
     );
+
     const jobSkills = extractJobInfo(job, JobInfoEnum.SKILLS) || [];
     const subclassSkills =
         extractSubclassInfo(subclass, SubclassInfoEnum.SKILLS) || [];
@@ -33,30 +34,37 @@ const SkillTabComponent = () => {
 
     const dispatch = useDispatch();
 
+    const creationFlow = !id;
+    const tooltipMessage = creationFlow
+        ? 'Desabilitado durante criação de personagem.'
+        : null;
+
     const skillList = jobSkills
         .concat(subclassSkills)
         .filter((s) => s.level <= level)
         .map((s, i) => {
             const header = (
                 <div className="skill-list-header-content">
-                    <div className="skill-list-header-content-start">
-                        <Button
-                            className="skill-list-header-content-button"
-                            type="primary"
-                            danger
-                            disabled={s.cost > currentMana}
-                            onClick={() => {
-                                if (s.cost <= currentMana) {
-                                    dispatch(
-                                        setCurrentMana(currentMana - s.cost)
-                                    );
-                                }
-                            }}
-                        >
-                            <ThunderboltFilled className="skill-mana-symbol" />
-                            {s.cost}
-                        </Button>
-                    </div>
+                    <Tooltip title={tooltipMessage} placement="bottom">
+                        <div className="skill-list-header-content-start">
+                            <Button
+                                className="skill-list-header-content-button"
+                                type="primary"
+                                danger
+                                disabled={s.cost > currentMana || creationFlow}
+                                onClick={() => {
+                                    if (s.cost <= currentMana) {
+                                        dispatch(
+                                            setCurrentMana(currentMana - s.cost)
+                                        );
+                                    }
+                                }}
+                            >
+                                <ThunderboltFilled className="skill-mana-symbol" />
+                                {s.cost}
+                            </Button>
+                        </div>
+                    </Tooltip>
                     <div
                         style={{ width: '845px', textAlign: 'center' }}
                         onClick={() => checkForPanelExpand(i.toString())}

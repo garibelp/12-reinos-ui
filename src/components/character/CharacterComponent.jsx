@@ -10,7 +10,7 @@ import {
     Col,
     Button,
 } from 'antd';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
@@ -63,6 +63,27 @@ const CharacterComponent = () => {
             history.push('/char/list');
         },
     });
+
+    // Hook to auto-save character each 10 minutes
+    useEffect(() => {
+        const interval = setInterval(() => {
+            if (id) {
+                console.info('Triggering auto save');
+                const {
+                    errors,
+                    commonPayload,
+                } = validateCharMandatoryAttributes(character);
+                if (errors.length === 0) {
+                    updateCharacter({
+                        variables: { payload: commonPayload },
+                    }).catch((error) => {
+                        console.error(error);
+                    });
+                }
+            }
+        }, 600000);
+        return () => clearInterval(interval);
+    }, [id, character, updateCharacter]);
 
     // Create/edit char mutations logic
     function saveCharacter() {

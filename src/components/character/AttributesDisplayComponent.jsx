@@ -6,15 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { ReactComponent as Dice } from '../../assets/images/d20.svg';
 import AttributeEnum from '../../enums/attributeEnum';
-import {
-    setCurrentBonusPoints,
-    setBaseAttributeValue,
-    setBonusAttributes,
-} from '../../reducers/characterReducer';
-import {
-    extractJobBonusAttributeName,
-    extractBackgroundBonusAttributeName,
-} from '../../utils/attributeUtils';
+import { setBonusAttribute } from '../../reducers/characterReducer';
 import './AttributesDisplayComponent.css';
 import StatusIconComponent from './StatusIconComponent';
 
@@ -25,84 +17,38 @@ const AttributesDisplayComponent = () => {
 
     const dispatch = useDispatch();
     const {
-        id,
-        background,
         race,
-        job,
         defective,
         enhancedAttribute,
-        bonusAttributes,
+        job,
+        background,
+        currentBonusPoints,
+        id,
     } = characterStore;
 
-    const jobBonusAttrName = extractJobBonusAttributeName(job);
-    const backgroundAttrName = extractBackgroundBonusAttributeName(background);
     const useEnhanced = race === 'Alterado';
-    const disabled = !!id;
 
     let defectiveColor = '';
     if (useEnhanced) {
         defectiveColor = defective ? 'darkred' : 'darkgreen';
     }
 
-    function modifyAttribute(attrName, lockChange, decrease = false) {
-        const isBgAndJobFilled = job && background;
-        const baseAttribute = characterStore[attrName];
-
-        if (!lockChange && isBgAndJobFilled) {
-            function updateStore(attrValue, points, updatedAttribute) {
-                dispatch(
-                    setBonusAttributes({
-                        ...bonusAttributes,
-                        [attrName]: attrValue,
-                    })
-                );
-                dispatch(setCurrentBonusPoints(points));
-                // TODO: Update base value on store
-                dispatch(
-                    setBaseAttributeValue({
-                        attributeName: attrName,
-                        attributeValue: updatedAttribute,
-                    })
-                );
-            }
-            const { currentBonusPoints } = characterStore;
-            let currentValue = bonusAttributes[attrName];
-
-            if (decrease) {
-                // Decrease stats
-                currentValue -= 1;
-                if (currentBonusPoints < 3 && currentValue >= 0) {
-                    updateStore(
-                        currentValue,
-                        currentBonusPoints + 1,
-                        baseAttribute - 1
-                    );
-                }
-            } else {
-                // Increase stats
-                currentValue += 1;
-                if (currentBonusPoints > 0 && currentValue < 3) {
-                    updateStore(
-                        currentValue,
-                        currentBonusPoints - 1,
-                        baseAttribute + 1
-                    );
-                }
-            }
-        }
-    }
+    const creationFlow = !id;
 
     return (
         <RadioGroup style={{ width: '100%' }}>
             <Row className="attribute-table">
                 {Object.entries(AttributeEnum).map((attr) => {
-                    const baseAttributeValue = characterStore[attr[1].base];
+                    const attrValues = characterStore[attr[1].init];
+                    const baseAttributeValue = Object.values(attrValues).reduce(
+                        (a, b) => a + b
+                    );
 
                     // Check if the current attribute is the job base attribute
-                    const isJobBaseAttr = attr[1].base === jobBonusAttrName;
+                    const isJobBaseAttr = attrValues.job > 0;
 
                     // Check if the current attribute is the background base attribute
-                    const isBgBaseAttr = attr[1].base === backgroundAttrName;
+                    const isBgBaseAttr = attrValues.background > 0;
 
                     // Check if the current attribute is the enhanced race attribute
                     const isEnhancedAttr = enhancedAttribute === attr[0];
@@ -121,6 +67,17 @@ const AttributesDisplayComponent = () => {
                         diceTooltipMessage += '\nAtributo bônus de Alterado';
                     }
 
+                    const disableSub =
+                        isBgBaseAttr ||
+                        attrValues.bonus === 0 ||
+                        !creationFlow ||
+                        currentBonusPoints === 3;
+                    const disableAdd =
+                        isBgBaseAttr ||
+                        attrValues.bonus === 2 ||
+                        !creationFlow ||
+                        currentBonusPoints === 0;
+
                     return (
                         <Col key={attr[1].base} span={12}>
                             <Card
@@ -134,15 +91,16 @@ const AttributesDisplayComponent = () => {
                                     <Col span={8}>
                                         <Button
                                             onClick={() => {
-                                                modifyAttribute(
-                                                    attr[1].base,
-                                                    isBgBaseAttr || disabled,
-                                                    true
+                                                dispatch(
+                                                    setBonusAttribute({
+                                                        value: -1,
+                                                        attribute: attr[0],
+                                                    })
                                                 );
                                             }}
                                             shape="circle"
-                                            disabled={disabled}
                                             type="primary"
+                                            disabled={disableSub}
                                             icon={<MinusOutlined />}
                                         />
                                     </Col>
@@ -178,15 +136,17 @@ const AttributesDisplayComponent = () => {
                                     <Col span={8}>
                                         <Button
                                             onClick={() => {
-                                                modifyAttribute(
-                                                    attr[1].base,
-                                                    isBgBaseAttr || disabled
+                                                dispatch(
+                                                    setBonusAttribute({
+                                                        value: 1,
+                                                        attribute: attr[0],
+                                                    })
                                                 );
                                             }}
                                             shape="circle"
-                                            disabled={disabled}
                                             type="primary"
                                             danger
+                                            disabled={disableAdd}
                                             icon={<PlusOutlined />}
                                         />
                                     </Col>

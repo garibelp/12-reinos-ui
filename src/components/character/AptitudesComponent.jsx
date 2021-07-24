@@ -26,8 +26,10 @@ function buildAptitudes(list, index) {
 }
 
 const AptitudesComponent = () => {
-    const { aptitudeList } = useSelector((state) => state.character);
+    const { aptitudeList, id } = useSelector((state) => state.character);
     const dispatch = useDispatch();
+
+    const editionFlow = !!id;
 
     function updateAptitudeList(value, index) {
         const updatedAptList = [...aptitudeList];
@@ -54,7 +56,7 @@ const AptitudesComponent = () => {
                             updateAptitudeList(value, 0);
                         }}
                         placeholder="Selecionar aptidão"
-                        allowClear
+                        disabled={editionFlow}
                     >
                         {buildAptitudes(aptitudeList, 0)}
                     </Select>
@@ -67,7 +69,7 @@ const AptitudesComponent = () => {
                             updateAptitudeList(value, 1);
                         }}
                         placeholder="Selecionar aptidão"
-                        allowClear
+                        disabled={editionFlow}
                     >
                         {buildAptitudes(aptitudeList, 1)}
                     </Select>
@@ -80,7 +82,7 @@ const AptitudesComponent = () => {
                             updateAptitudeList(value, 2);
                         }}
                         placeholder="Selecionar aptidão"
-                        allowClear
+                        disabled={editionFlow}
                     >
                         {buildAptitudes(aptitudeList, 2)}
                     </Select>

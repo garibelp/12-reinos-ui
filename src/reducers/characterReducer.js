@@ -2,11 +2,13 @@ import { createSlice } from '@reduxjs/toolkit';
 
 import AttributeEnum from '../enums/attributeEnum';
 
-const defaultBonusAttribute = {
-    [AttributeEnum.TEN.base]: 0,
-    [AttributeEnum.INT.base]: 0,
-    [AttributeEnum.CEL.base]: 0,
-    [AttributeEnum.AST.base]: 0,
+const defaultAttributeValues = {
+    base: 3,
+    job: 0,
+    background: 0,
+    subclass: 0,
+    race: 0,
+    bonus: 0,
 };
 
 const defaultInitialState = {
@@ -28,14 +30,29 @@ const defaultInitialState = {
     motivation: null,
     defective: false,
     enhancedAttribute: null,
-    [AttributeEnum.TEN.base]: 3,
-    [AttributeEnum.INT.base]: 3,
-    [AttributeEnum.CEL.base]: 3,
-    [AttributeEnum.AST.base]: 3,
+    [AttributeEnum.AST.init]: defaultAttributeValues,
+    [AttributeEnum.CEL.init]: defaultAttributeValues,
+    [AttributeEnum.INT.init]: defaultAttributeValues,
+    [AttributeEnum.TEN.init]: defaultAttributeValues,
     aptitudeList: [null, null, null],
     currentBonusPoints: 3,
-    // Attribute used only when adding bonus points on specific levels
-    bonusAttributes: defaultBonusAttribute,
+};
+
+const updateConstAttribute = (state, attrName, bonusObj) => {
+    if (bonusObj) {
+        Object.keys(AttributeEnum).forEach((k) => {
+            state[k][attrName] = bonusObj[k] || 0;
+            // Logic to remove bonus points if attr changed is background
+            if (
+                attrName === 'background' &&
+                bonusObj[k] &&
+                state[k].bonus > 0
+            ) {
+                state.currentBonusPoints += state[k].bonus;
+                state[k].bonus = 0;
+            }
+        });
+    }
 };
 
 const { actions, reducer } = createSlice({
@@ -98,27 +115,35 @@ const { actions, reducer } = createSlice({
             return state;
         },
         setBackground: (state, action) => {
-            const { payload } = action;
-            state.background = payload;
-            state.currentBonusPoints = 3;
-            state.bonusAttributes = defaultBonusAttribute;
+            const {
+                payload: { name, bonus },
+            } = action;
+            state.background = name;
+            updateConstAttribute(state, 'background', bonus);
             return state;
         },
         setRace: (state, action) => {
-            const { payload } = action;
-            state.race = payload;
+            const {
+                payload: { name, bonus },
+            } = action;
+            state.race = name;
+            updateConstAttribute(state, 'race', bonus);
             return state;
         },
         setJob: (state, action) => {
-            const { payload } = action;
-            state.job = payload;
-            state.currentBonusPoints = 3;
-            state.bonusAttributes = defaultBonusAttribute;
+            const {
+                payload: { name, bonus },
+            } = action;
+            state.job = name;
+            updateConstAttribute(state, 'job', bonus);
             return state;
         },
         setSubclass: (state, action) => {
-            const { payload } = action;
-            state.subclass = payload;
+            const {
+                payload: { name, bonus },
+            } = action;
+            state.subclass = name;
+            updateConstAttribute(state, 'subclass', bonus);
             return state;
         },
         setMotivation: (state, action) => {
@@ -129,29 +154,25 @@ const { actions, reducer } = createSlice({
         setDefective: (state, action) => {
             const { payload } = action;
             state.defective = payload;
+            if (state.enhancedAttribute) {
+                state[state.enhancedAttribute].race = payload ? -1 : 1;
+            }
             return state;
         },
         setEnhancedAttribute: (state, action) => {
             const { payload } = action;
             state.enhancedAttribute = payload;
-            return state;
-        },
-        setCharacterInfoBlock: (state, action) => {
-            const { payload } = action;
-            Object.entries(payload).forEach((attribute) => {
-                state[attribute[0]] = attribute[1];
+            updateConstAttribute(state, 'race', {
+                [payload]: state.defective ? -1 : 1,
             });
-            state.bonusAttributes = defaultBonusAttribute;
             return state;
         },
-        setBonusAttributes: (state, action) => {
-            const { payload } = action;
-            state.bonusAttributes = payload;
-            return state;
-        },
-        setCurrentBonusPoints: (state, action) => {
-            const { payload } = action;
-            state.currentBonusPoints = payload;
+        setBonusAttribute: (state, action) => {
+            const {
+                payload: { value, attribute },
+            } = action;
+            state.currentBonusPoints -= value;
+            state[attribute].bonus += value;
             return state;
         },
         setBaseAttributeValue: (state, action) => {
@@ -164,6 +185,13 @@ const { actions, reducer } = createSlice({
         setAptitudeList: (state, action) => {
             const { payload } = action;
             state.aptitudeList = payload;
+            return state;
+        },
+        setCharacterInfoBlock: (state, action) => {
+            const { payload } = action;
+            Object.entries(payload).forEach((attribute) => {
+                state[attribute[0]] = attribute[1];
+            });
             return state;
         },
     },
@@ -186,12 +214,11 @@ export const {
     setTotalArmor,
     setTotalLife,
     setTotalMana,
-    setCharacterInfoBlock,
     setEnhancedAttribute,
-    setBonusAttributes,
-    setCurrentBonusPoints,
+    setBonusAttribute,
     setBaseAttributeValue,
     setAptitudeList,
+    setCharacterInfoBlock,
 } = actions;
 
 export default reducer;
