@@ -39,20 +39,15 @@ const defaultInitialState = {
 };
 
 const updateConstAttribute = (state, attrName, bonusObj) => {
-    if (bonusObj) {
-        Object.keys(AttributeEnum).forEach((k) => {
-            state[k][attrName] = bonusObj[k] || 0;
-            // Logic to remove bonus points if attr changed is background
-            if (
-                attrName === 'background' &&
-                bonusObj[k] &&
-                state[k].bonus > 0
-            ) {
-                state.currentBonusPoints += state[k].bonus;
-                state[k].bonus = 0;
-            }
-        });
-    }
+    Object.keys(AttributeEnum).forEach((k) => {
+        const bonusValue = bonusObj && bonusObj[k] ? bonusObj[k] : null;
+        state[k][attrName] = bonusValue || 0;
+        // Logic to remove bonus points if attr changed is background
+        if (attrName === 'background' && bonusValue && state[k].bonus > 0) {
+            state.currentBonusPoints += state[k].bonus;
+            state[k].bonus = 0;
+        }
+    });
 };
 
 const { actions, reducer } = createSlice({
@@ -127,6 +122,7 @@ const { actions, reducer } = createSlice({
                 payload: { name, bonus },
             } = action;
             state.race = name;
+            if (name !== 'Alterado') state.enhancedAttribute = null;
             updateConstAttribute(state, 'race', bonus);
             return state;
         },
@@ -135,7 +131,6 @@ const { actions, reducer } = createSlice({
                 payload: { name, bonus },
             } = action;
             state.job = name;
-            if (name !== 'Alterado') state.enhancedAttribute = null;
             updateConstAttribute(state, 'job', bonus);
             return state;
         },

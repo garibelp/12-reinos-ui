@@ -21,7 +21,7 @@ import {
     message,
 } from 'antd';
 import TextArea from 'antd/lib/input/TextArea';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { ReactComponent as AttributesSvg } from '../../assets/images/attributes.svg';
