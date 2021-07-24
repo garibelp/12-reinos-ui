@@ -135,6 +135,7 @@ const { actions, reducer } = createSlice({
                 payload: { name, bonus },
             } = action;
             state.job = name;
+            if (name !== 'Alterado') state.enhancedAttribute = null;
             updateConstAttribute(state, 'job', bonus);
             return state;
         },

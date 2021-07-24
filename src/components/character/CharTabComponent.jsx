@@ -651,7 +651,10 @@ const CharTabComponent = () => {
                                                 width: '190px',
                                                 marginLeft: '10px',
                                             }}
-                                            disabled={race !== 'Alterado'}
+                                            disabled={
+                                                race !== 'Alterado' ||
+                                                editionFlow
+                                            }
                                             value={enhancedAttribute}
                                             onChange={(v) => {
                                                 dispatch(
