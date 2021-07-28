@@ -1,11 +1,9 @@
 .character-card {
     width: 1000px;
     height: 685px;
-    background-color: #a12e39;
 }
 
 .character-card > .ant-card-head {
-    background-color: #58181c;
     text-align: center;
 }
 

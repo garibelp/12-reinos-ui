@@ -55,7 +55,7 @@ const AptitudesComponent = () => {
                         onChange={(value) => {
                             updateAptitudeList(value, 0);
                         }}
-                        placeholder="Selecionar aptidão"
+                        placeholder="Selecionar"
                         disabled={editionFlow}
                     >
                         {buildAptitudes(aptitudeList, 0)}
@@ -68,7 +68,7 @@ const AptitudesComponent = () => {
                         onChange={(value) => {
                             updateAptitudeList(value, 1);
                         }}
-                        placeholder="Selecionar aptidão"
+                        placeholder="Selecionar"
                         disabled={editionFlow}
                     >
                         {buildAptitudes(aptitudeList, 1)}
@@ -81,7 +81,7 @@ const AptitudesComponent = () => {
                         onChange={(value) => {
                             updateAptitudeList(value, 2);
                         }}
-                        placeholder="Selecionar aptidão"
+                        placeholder="Selecionar"
                         disabled={editionFlow}
                     >
                         {buildAptitudes(aptitudeList, 2)}

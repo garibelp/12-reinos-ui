@@ -68,9 +68,9 @@
 }
 
 .check-death-success > .ant-checkbox {
-    background: darkseagreen;
+    background: green;
 }
 
 .check-death-fail > .ant-checkbox {
-    background: lightpink;
+    background: red;
 }
