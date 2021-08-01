@@ -1,5 +1,5 @@
 import { Layout, Menu } from 'antd';
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { Redirect, Route, Switch, useHistory } from 'react-router-dom';
 
@@ -31,8 +31,13 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
 );
 
 const App = () => {
+    const [currentUser, setCurrentUser] = useState(null);
     const history = useHistory();
     const dispatch = useDispatch();
+
+    useEffect(() => {
+        authService.currentUser.subscribe((u) => setCurrentUser(u));
+    }, []);
 
     return (
         <Layout className="app-layout">
@@ -43,28 +48,32 @@ const App = () => {
                     className="menu-header"
                     defaultSelectedKeys={['1']}
                 >
-                    <Item
-                        key="1"
-                        onClick={() => {
-                            history.push('/char/list');
-                        }}
-                    >
-                        Personagens
-                    </Item>
-                    <Item
-                        key="2"
-                        onClick={() => {
-                            window.open(
-                                'https://homebrewery.naturalcrit.com/share/uIUFJTMizrCk',
-                                '_blank'
-                            );
-                        }}
-                    >
-                        Manual
-                    </Item>
-                    <Item key="3" disabled>
-                        Mesas
-                    </Item>
+                    {currentUser && (
+                        <>
+                            <Item
+                                key="1"
+                                onClick={() => {
+                                    history.push('/char/list');
+                                }}
+                            >
+                                Personagens
+                            </Item>
+                            <Item
+                                key="2"
+                                onClick={() => {
+                                    window.open(
+                                        'https://homebrewery.naturalcrit.com/share/uIUFJTMizrCk',
+                                        '_blank'
+                                    );
+                                }}
+                            >
+                                Manual
+                            </Item>
+                            <Item key="3" disabled>
+                                Mesas
+                            </Item>
+                        </>
+                    )}
                 </Menu>
                 <img
                     style={{ width: '145px', marginRight: '10px' }}
