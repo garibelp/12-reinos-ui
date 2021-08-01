@@ -11,6 +11,7 @@ const currentUserSubject = new BehaviorSubject(
 export const authService = {
     login,
     logout,
+    refresh,
     currentUser: currentUserSubject.asObservable(),
     get currentUserValue() {
         return currentUserSubject.value;
@@ -39,4 +40,8 @@ function logout() {
     // remove user from local storage to log user out
     localStorage.removeItem('currentUser');
     currentUserSubject.next(null);
+}
+
+function refresh() {
+    // TODO: Handle refresh
 }
