@@ -47,6 +47,18 @@ input CreateCharacterInput {
     totalMana: Int!
 }
 
+input CreateUserInput {
+    email: String!
+    firstName: String!
+    lastName: String!
+    password: String!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
 input ListCharacterInput {
     _id: String
     background: String
@@ -59,8 +71,10 @@ input ListCharacterInput {
 
 type Mutation {
     createCharacter(payload: CreateCharacterInput!): Character!
+    createUser(payload: CreateUserInput!): User!
     deleteCharacter(_id: String!): Character!
     updateCharacter(payload: UpdateCharacterInput!): Character!
+    updateUser(payload: UpdateUserInput!): User!
 }
 
 type Query {
@@ -85,4 +99,18 @@ input UpdateCharacterInput {
     totalArmor: Int
     totalLife: Int
     totalMana: Int
+}
+
+input UpdateUserInput {
+    _id: String!
+    firstName: String
+    lastName: String
+}
+
+type User {
+    _id: String!
+    createdAt: DateTime!
+    email: String!
+    firstName: String!
+    lastName: String!
 }

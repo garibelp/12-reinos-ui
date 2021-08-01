@@ -1,0 +1,16 @@
+.login-card {
+    width: 300px;
+    height: fit-content;
+    align-self: center;
+}
+
+.login-card > .ant-card-head {
+    text-align: center;
+    color: #d89614;
+}
+
+.login-card-button {
+    margin-top: 10px;
+    margin-bottom: 0;
+    text-align: center;
+}

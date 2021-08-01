@@ -10,10 +10,11 @@ import {
     Col,
     Button,
 } from 'antd';
+import PropTypes from 'prop-types';
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 
 import {
     CREATE_CHARACTER,
@@ -34,7 +35,9 @@ const defaultErrorMessage =
     'Tente novamente. Caso persista o erro, entre em contato com o time de desenvolvimento.';
 const { TabPane } = Tabs;
 
-const CharacterComponent = () => {
+const CharacterComponent = (props) => {
+    const { editionFlow } = props;
+
     const [showDiceRoll, setShowDiceRoll] = useState(false);
     const history = useHistory();
     const dispatch = useDispatch();
@@ -46,8 +49,8 @@ const CharacterComponent = () => {
 
     // Query to retrieve char information
     const { loading } = useQuery(CHARACTER, {
-        skip: !id,
-        variables: { id },
+        skip: !editionFlow,
+        variables: { id: useParams().id },
         onCompleted: (d) => {
             const { character: dbCharacter } = d;
             dispatch(
@@ -203,6 +206,14 @@ const CharacterComponent = () => {
             </Form>
         </Card>
     );
+};
+
+CharacterComponent.propTypes = {
+    editionFlow: PropTypes.bool,
+};
+
+CharacterComponent.defaultProps = {
+    editionFlow: false,
 };
 
 export default CharacterComponent;

@@ -7,14 +7,33 @@ import './App.less';
 import LogoPng from './assets/images/logo_nome.png';
 import CharacterComponent from './components/character/CharacterComponent';
 import ListCharacterComponent from './components/listCharacter/ListCharacterComponent';
+import LoginComponent from './components/login/LoginComponent';
 import { setId } from './reducers/characterReducer';
+import { authService } from './service/authService';
 
 const { Header, Content } = Layout;
 const { Item } = Menu;
 
+const PrivateRoute = ({ component: Component, ...rest }) => (
+    <Route
+        {...rest}
+        render={(props) => {
+            const currentUser = authService.currentUserValue;
+            if (!currentUser) {
+                // not logged in so redirect to login page with the return url
+                return <Redirect to="/login" />;
+            }
+
+            // authorized so return component
+            return <Component {...props} />;
+        }}
+    />
+);
+
 const App = () => {
     const history = useHistory();
     const dispatch = useDispatch();
+
     return (
         <Layout className="app-layout">
             <Header className="site-layout-header">
@@ -61,27 +80,25 @@ const App = () => {
                 }}
             >
                 <Switch>
-                    <Route
-                        exact
-                        path="/char/create"
-                        render={() => {
-                            dispatch(setId(null));
-                            return <CharacterComponent />;
-                        }}
-                    />
-                    <Route
-                        exact
-                        path="/char/edit/:id"
-                        render={(props) => {
-                            dispatch(setId(props.match.params.id));
-                            return <CharacterComponent />;
-                        }}
-                    />
-                    <Route
+                    <PrivateRoute
                         exact
                         path="/char/list"
                         component={ListCharacterComponent}
                     />
+                    <PrivateRoute
+                        exact
+                        path="/char/create"
+                        component={CharacterComponent}
+                        render={() => {
+                            dispatch(setId(null));
+                        }}
+                    />
+                    <PrivateRoute
+                        exact
+                        path="/char/edit/:id"
+                        component={() => <CharacterComponent editionFlow />}
+                    />
+                    <Route exact path="/login" component={LoginComponent} />
                     <Redirect to="/char/list" />
                 </Switch>
             </Content>

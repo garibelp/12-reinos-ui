@@ -1,6 +1,7 @@
 .character-card {
     width: 1000px;
     height: 685px;
+    align-self: center;
 }
 
 .character-card > .ant-card-head {
