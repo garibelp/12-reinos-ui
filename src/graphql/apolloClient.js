@@ -6,6 +6,7 @@ import {
 } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 import { onError } from '@apollo/client/link/error';
+import { fromPromise } from 'apollo-link';
 
 import { authHeader } from '../helpers/auth-header';
 import { authService } from '../service/authService';
@@ -22,6 +23,11 @@ const authLink = setContext((_, { headers }) => {
 
 const errorLink = onError(
     ({ graphQLErrors, networkError, operation, forward }) => {
+        if (networkError) {
+            console.error(networkError?.message);
+            authService.logout();
+            return;
+        }
         if (graphQLErrors) {
             for (let err of graphQLErrors) {
                 // handle errors differently based on its error code
@@ -30,19 +36,30 @@ const errorLink = onError(
                         // old token has expired throwing AuthenticationError,
                         // one way to handle is to obtain a new token and
                         // add it to the operation context
-                        // const headers = operation.getContext().headers;
-                        // operation.setContext({
-                        //     headers: {
-                        //         ...headers,
-                        //         authorization: authService.refresh(),
-                        //     },
-                        // });
-                        // Now, pass the modified operation to the next link
-                        // in the chain. This effectively intercepts the old
-                        // failed request, and retries it with a new token
-                        // return forward(operation);
-                        authService.logout();
-                        break;
+                        return fromPromise(
+                            authService
+                                .refresh()
+                                .then((token) => {
+                                    const headers = operation.getContext()
+                                        .headers;
+                                    operation.setContext({
+                                        headers: {
+                                            ...headers,
+                                            authorization: authHeader(),
+                                        },
+                                    });
+
+                                    // Now, pass the modified operation to the next link
+                                    // in the chain. This effectively intercepts the old
+                                    // failed request, and retries it with a new token
+                                    return forward(operation);
+                                })
+                                .catch((e) => {
+                                    console.error(e);
+                                    authService.logout();
+                                    return;
+                                })
+                        );
                     default:
                     // TODO: default error
                 }

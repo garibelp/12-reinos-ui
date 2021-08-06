@@ -39,6 +39,7 @@ const App = () => {
         authService.currentUser.subscribe((u) => setCurrentUser(u));
     }, []);
 
+    console.log(currentUser);
     return (
         <Layout className="app-layout">
             <Header className="site-layout-header">
