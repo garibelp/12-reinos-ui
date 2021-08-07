@@ -1,4 +1,5 @@
-import { Layout, Menu } from 'antd';
+import { LogoutOutlined } from '@ant-design/icons';
+import { Button, Layout, Menu, Tooltip } from 'antd';
 import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { Redirect, Route, Switch, useHistory } from 'react-router-dom';
@@ -39,7 +40,6 @@ const App = () => {
         authService.currentUser.subscribe((u) => setCurrentUser(u));
     }, []);
 
-    console.log(currentUser);
     return (
         <Layout className="app-layout">
             <Header className="site-layout-header">
@@ -76,8 +76,18 @@ const App = () => {
                         </>
                     )}
                 </Menu>
+                {currentUser && (
+                    <Tooltip title="Logout" placement="bottom">
+                        <Button
+                            type="primary"
+                            icon={<LogoutOutlined />}
+                            style={{ alignSelf: 'center' }}
+                            onClick={authService.logout}
+                        />
+                    </Tooltip>
+                )}
                 <img
-                    style={{ width: '145px', marginRight: '10px' }}
+                    style={{ width: '145px', margin: '0 10px' }}
                     src={LogoPng}
                     alt=""
                 />
