@@ -21,7 +21,7 @@ import {
     UPDATE_CHARACTER,
 } from '../../graphql/character/character.mutations';
 import { CHARACTER } from '../../graphql/character/character.queries';
-import { setCharacterInfoBlock } from '../../reducers/characterReducer';
+import { setCharacterInfoBlock, setId } from '../../reducers/characterReducer';
 import {
     buildLoadCharacterPayload,
     validateCharMandatoryAttributes,
@@ -37,10 +37,17 @@ const { TabPane } = Tabs;
 
 const CharacterComponent = (props) => {
     const { editionFlow } = props;
-
+    const { id: urlId } = useParams();
     const [showDiceRoll, setShowDiceRoll] = useState(false);
     const history = useHistory();
     const dispatch = useDispatch();
+
+    useEffect(() => {
+        if (editionFlow) {
+            dispatch(setId(urlId));
+        }
+    }, [editionFlow, urlId, dispatch]);
+
     const [createCharacter] = useMutation(CREATE_CHARACTER);
     const [updateCharacter] = useMutation(UPDATE_CHARACTER);
 
