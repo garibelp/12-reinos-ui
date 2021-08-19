@@ -565,7 +565,8 @@ const CharTabComponent = () => {
                                 statusName={'Defesa'}
                                 currentValue={(
                                     extractJobInfo(job, JobInfoEnum.LIFE) +
-                                    currentArmor
+                                    currentArmor +
+                                    3
                                 ).toString()}
                             />
                         </Col>
