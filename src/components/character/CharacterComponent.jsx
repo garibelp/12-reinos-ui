@@ -43,10 +43,8 @@ const CharacterComponent = (props) => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        if (editionFlow) {
-            dispatch(setId(urlId));
-        }
-    }, [editionFlow, urlId, dispatch]);
+        dispatch(setId(urlId));
+    }, [urlId, dispatch]);
 
     const [createCharacter] = useMutation(CREATE_CHARACTER);
     const [updateCharacter] = useMutation(UPDATE_CHARACTER);
